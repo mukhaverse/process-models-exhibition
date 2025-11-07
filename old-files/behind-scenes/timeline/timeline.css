@@ -1,0 +1,128 @@
+/* ---------- Timeline Section ---------- */
+.timeline-section {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  /* Ensure timeline starts after hero/stats animations complete */
+  z-index: 1;
+}
+
+.timeline-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.timeline-container {
+  display: flex;
+  width: 400vw;
+  position: relative;
+}
+
+.timeline-container svg {
+  position: absolute;
+  top: 8em;
+  left: 10vw;
+  width: 50vw;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.timeline-date-label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  fill: #666;
+  font-weight: 400;
+}
+
+.timeline-mask-rect {
+  width: 0;
+}
+
+.timeline-container section {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20vw 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.timeline-container section h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 20px 0;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.timeline-date {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: #667eea;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.timeline-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.timeline-col p {
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+}
+
+/* Ensure proper spacing after timeline */
+.timeline-section + section,
+.timeline-section + .interviews {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-container svg {
+    top: 4em;
+    left: 5vw;
+    width: 70vw;
+  }
+  
+  .timeline-date-label {
+    font-size: 10px;
+  }
+  
+  .timeline-container section {
+    padding-top: 12em;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+  
+  .timeline-col {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-container svg {
+    top: 3em;
+    width: 80vw;
+  }
+  
+  .timeline-container section h1 {
+    font-size: 2rem;
+  }
+  
+  .timeline-col p {
+    font-size: 0.9rem;
+  }
+}
