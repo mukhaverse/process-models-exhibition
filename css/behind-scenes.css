@@ -1,0 +1,183 @@
+/* ---------- Behind the Scenes Section ---------- */
+.behind-scenes {
+  background-color: #e8e8e8;
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.behind-scenes h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.bts-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bts-grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+  min-height: 700px;
+  padding: 60px;
+}
+
+/* Polaroid Photo Card */
+.bts-item {
+  background: #fff;
+  border-radius: 4px;
+  padding: 15px 15px 60px 15px; /* top, right, bottom, left - extra space at bottom */
+  height: auto;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  pointer-events: none;
+  position: relative;
+}
+
+.bts-item:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Image inside polaroid */
+.bts-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  background: #d4d4d4;
+}
+
+/* Scatter button styling - Circular */
+.sctB {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #667eea;
+  color: #fff;
+  border: none;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  z-index: 9999;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.sctB:hover {
+  background: #5568d3;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+/* Responsive Design */
+@media (min-width: 1200px) {
+  .bts-grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 80px;
+    min-height: 900px;
+  }
+  
+  .bts-item {
+    width: 240px;
+    padding: 20px;
+    padding-bottom: 90px;
+    font-size: 20px;
+  }
+  
+  .bts-item::before {
+    width: calc(100% - 40px);
+    top: 20px;
+    left: 20px;
+  }
+  
+  .sctB {
+    width: 100px;
+    height: 100px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bts-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 40px;
+    min-height: 600px;
+  }
+  
+  .bts-item {
+    width: 140px;
+    padding: 12px;
+    padding-bottom: 50px;
+    font-size: 16px;
+  }
+  
+  .bts-item::before {
+    width: calc(100% - 24px);
+    top: 12px;
+    left: 12px;
+  }
+  
+  .sctB {
+    width: 70px;
+    height: 70px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bts-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 30px;
+    min-height: 500px;
+  }
+  
+  .bts-item {
+    width: 120px;
+    padding: 10px;
+    padding-bottom: 45px;
+    font-size: 14px;
+  }
+  
+  .bts-item::before {
+    width: calc(100% - 20px);
+    top: 10px;
+    left: 10px;
+  }
+  
+  .sctB {
+    width: 60px;
+    height: 60px;
+    font-size: 0.7rem;
+  }
+}
