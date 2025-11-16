@@ -1,14 +1,43 @@
-// GSAP Animations
-gsap.registerPlugin(ScrollTrigger);
+// Global data store
+let appData = {};
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initParticles();
-    initAnimations();
-    initCarousel();
-    initFlipCards();
-    initProjectExpansion();
+    loadData();
 });
+
+// Load data from JSON file
+async function loadData() {
+    try {
+        const response = await fetch('data.json');
+        appData = await response.json();
+        
+        // Initialize static animations first
+        initParticles();
+        initStaticAnimations();
+        
+        // Then render dynamic content
+        renderStats();
+        renderProjects();
+        renderInsights();
+        renderTestimonials();
+        
+        // Update counts in hero section
+        document.getElementById('teamsCount').textContent = `${new Set(appData.projects.map(p => p.team)).size} TEAMS`;
+        document.getElementById('projectsCount').textContent = `${appData.projects.length} PROJECTS`;
+        
+        // Initialize interactive components after rendering
+        setTimeout(() => {
+            initCarousel();
+            initFlipCards();
+            initProjectExpansion();
+            initScrollAnimations();
+        }, 200);
+        
+    } catch (error) {
+        console.error('Error loading data:', error);
+    }
+}
 
 // Create floating particles
 function initParticles() {
@@ -34,8 +63,8 @@ function initParticles() {
     }
 }
 
-// Initialize all animations
-function initAnimations() {
+// Initialize static animations (hero, shapes, etc.)
+function initStaticAnimations() {
     // Hero animations
     gsap.from('.hero-label', {
         duration: 1,
@@ -118,26 +147,18 @@ function initAnimations() {
         stagger: 0.1,
         ease: 'power2.out'
     });
+}
 
-    // Projects animation
-    gsap.from('.project-card', {
-        scrollTrigger: {
-            trigger: '.projects-section',
-            start: 'top 80%'
-        },
-        x: 100,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
-    });
-
+// Initialize scroll-triggered animations
+function initScrollAnimations() {
     // Section title animations
     gsap.utils.toArray('.section-title').forEach(title => {
         gsap.from(title, {
             scrollTrigger: {
                 trigger: title,
-                start: 'top 85%'
+                start: 'top 85%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none none'
             },
             y: 40,
             opacity: 0,
@@ -151,7 +172,9 @@ function initAnimations() {
         gsap.from(label, {
             scrollTrigger: {
                 trigger: label,
-                start: 'top 85%'
+                start: 'top 85%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none none'
             },
             y: 20,
             opacity: 0,
@@ -160,28 +183,31 @@ function initAnimations() {
         });
     });
 
-    // Stats animation with width expansion
-    gsap.utils.toArray('.stat-card').forEach((card, index) => {
-        gsap.to(card, {
-            scrollTrigger: {
-                trigger: '.stats-section',
-                start: 'top 80%',
-                onEnter: () => {
-                    setTimeout(() => {
-                        card.classList.add('animated');
-                    }, index * 100);
-                }
-            },
-            duration: 0.6,
-            ease: 'back.out(1.2)'
-        });
+    // Projects animation
+    gsap.from('.project-card', {
+        scrollTrigger: {
+            trigger: '.projects-section',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none'
+        },
+        x: 100,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out'
     });
+
+    // Stats animation with width expansion
+    animateStats();
 
     // Insights animation
     gsap.from('.insight-card', {
         scrollTrigger: {
             trigger: '.questionnaire-section',
-            start: 'top 80%'
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none'
         },
         scale: 0.9,
         opacity: 0,
@@ -189,6 +215,141 @@ function initAnimations() {
         stagger: 0.1,
         ease: 'back.out(1.4)'
     });
+
+    // Feedback cards animation
+    gsap.from('.feedback-card', {
+        scrollTrigger: {
+            trigger: '.feedback-section',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none none'
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out'
+    });
+}
+
+// Render stats section
+function renderStats() {
+    const statsGrid = document.getElementById('statsGrid');
+    if (!statsGrid || !appData.stats) return;
+
+    const stats = [
+        { number: appData.stats.linesOfCode, label: 'Lines Written' },
+        { number: appData.stats.bugsFixed, label: 'Bugs Fixed' },
+        { number: appData.stats.gitPushes, label: 'Git Pushes' },
+        { number: appData.stats.coffeeRuns, label: 'Coffee Runs' }
+    ];
+
+    statsGrid.innerHTML = stats.map(stat => `
+        <div class="stat-card">
+            <span class="stat-number">${stat.number}</span>
+            <span class="stat-label">${stat.label}</span>
+        </div>
+    `).join('');
+}
+
+// GSAP animation for stats - width grows from left to right
+function animateStats() {
+    const statCards = document.querySelectorAll('.stat-card');
+    
+    if (statCards.length === 0) {
+        console.warn('No stat cards found for animation');
+        return;
+    }
+    
+    // Set initial state - hidden with scaleX 0
+    gsap.set(statCards, {
+        scaleX: 0,
+        transformOrigin: "left center"
+    });
+
+    // Animate each card with stagger
+    gsap.to(statCards, {
+        scaleX: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: ".stats-section",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none none"
+        }
+    });
+}
+
+// Render projects section
+function renderProjects() {
+    const projectsTrack = document.getElementById('projectsTrack');
+    if (!projectsTrack || !appData.projects) return;
+
+    projectsTrack.innerHTML = appData.projects.map(project => `
+        <div class="project-card" data-project-id="${project.id}">
+            <div class="project-image">
+                <div class="project-number">${project.number}</div>
+                ${project.emoji}
+            </div>
+            <div class="project-content">
+                <h3 class="project-name">${project.name}</h3>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <button class="btn btn-outline project-expand-btn" data-project-id="${project.id}">
+                    <span>Explore</span>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Render insights flip cards
+function renderInsights() {
+    const insightsGrid = document.getElementById('insightsGrid');
+    if (!insightsGrid || !appData.insights) return;
+
+    insightsGrid.innerHTML = appData.insights.map(insight => `
+        <div class="insight-card" data-insight-id="${insight.id}">
+            <div class="insight-card-inner">
+                <div class="insight-card-front">
+                    <div>
+                        <div class="insight-number">${insight.number}</div>
+                        <div class="insight-question">${insight.question}</div>
+                        <div class="insight-prompt">${insight.prompt}</div>
+                    </div>
+                    <div class="click-hint">Click to Flip</div>
+                </div>
+                <div class="insight-card-back">
+                    <div>
+                        <div class="insight-number">${insight.number}</div>
+                        <div class="insight-question">${insight.question}</div>
+                        <div class="insight-answer">${insight.answer}</div>
+                        <div class="insight-context">${insight.context}</div>
+                    </div>
+                    <div class="click-hint">Click to Flip Back</div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Render testimonials
+function renderTestimonials() {
+    const feedbackCarousel = document.getElementById('feedbackCarousel');
+    if (!feedbackCarousel || !appData.testimonials) return;
+
+    // Duplicate testimonials for seamless scrolling
+    const duplicatedTestimonials = [...appData.testimonials, ...appData.testimonials];
+    
+    feedbackCarousel.innerHTML = duplicatedTestimonials.map(testimonial => `
+        <div class="feedback-card">
+            <p class="feedback-text">"${testimonial.text}"</p>
+            <p class="feedback-author">— ${testimonial.author}</p>
+        </div>
+    `).join('');
 }
 
 // Projects Carousel functionality
@@ -207,9 +368,8 @@ function initCarousel() {
 
     function getCardWidth() {
         if (cards.length === 0) return 380 + 32;
-        const cardStyle = window.getComputedStyle(cards[0]);
         const cardWidth = cards[0].offsetWidth;
-        const gap = parseInt(window.getComputedStyle(track).gap) || 32;
+        const gap = 32; // Fixed gap value
         return cardWidth + gap;
     }
 
@@ -225,7 +385,6 @@ function initCarousel() {
         const offset = -currentIndex * cardWidth;
         track.style.transform = `translateX(${offset}px)`;
         
-        // Update button states
         const cardsVisible = getVisibleCardsCount();
         const maxIndex = Math.max(0, cards.length - cardsVisible);
         
@@ -250,88 +409,117 @@ function initCarousel() {
         }
     });
 
-    // Initialize carousel on load and resize
-    window.addEventListener('load', updateCarousel);
+    // Initialize carousel
+    updateCarousel();
     window.addEventListener('resize', updateCarousel);
-    
-    // Initial update
-    setTimeout(updateCarousel, 100);
 }
 
 // Insight cards flip functionality
 function initFlipCards() {
-    document.querySelectorAll('.insight-card').forEach(card => {
+    const insightCards = document.querySelectorAll('.insight-card');
+    if (insightCards.length === 0) {
+        console.warn('No insight cards found');
+        return;
+    }
+    
+    insightCards.forEach(card => {
         card.addEventListener('click', () => {
             card.classList.toggle('flipped');
         });
     });
 }
 
-// Project Card Expansion functionality
+// Project Bottom Sheet functionality
 function initProjectExpansion() {
     const overlay = document.getElementById('projectOverlay');
-    const projectCards = document.querySelectorAll('.project-card');
+    const bottomSheet = document.getElementById('projectBottomSheet');
+    const bottomSheetContent = document.getElementById('bottomSheetContent');
+    const bottomSheetClose = document.getElementById('bottomSheetClose');
     const body = document.body;
 
-    if (!overlay) {
-        console.warn('Project overlay not found');
+    if (!overlay || !bottomSheet || !bottomSheetContent) {
+        console.warn('Bottom sheet elements not found');
         return;
     }
 
-    projectCards.forEach(card => {
-        const expandBtn = card.querySelector('.project-expand-btn');
-        const closeBtn = card.querySelector('.project-close');
+    // Open bottom sheet
+    function openBottomSheet(projectId) {
+        const project = appData.projects.find(p => p.id === projectId);
+        if (!project) return;
 
-        if (!expandBtn || !closeBtn) {
-            console.warn('Project card buttons not found');
-            return;
-        }
+        const content = `
+            <div class="bottom-sheet-project-image">
+                <div class="bottom-sheet-project-number">${project.number}</div>
+                ${project.emoji}
+            </div>
+            
+            <div class="project-content">
+                <h3 class="project-name">${project.name}</h3>
+                <div class="project-meta">
+                    <span class="project-team">${project.team}</span>
+                    <span class="project-sprints">${project.sprints} Sprints</span>
+                    <span class="project-status">${project.status}</span>
+                </div>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <p class="project-description">${project.description}</p>
+            </div>
 
-        // Expand card
-        expandBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.add('expanded');
-            overlay.classList.add('active');
-            body.style.overflow = 'hidden';
-        });
+            <div class="expanded-section">
+                <h4>About the Project</h4>
+                ${project.about.map(paragraph => `<p>${paragraph}</p>`).join('')}
+            </div>
 
-        // Close card
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.remove('expanded');
-            overlay.classList.remove('active');
-            body.style.overflow = '';
-        });
-    });
+            <div class="expanded-section">
+                <h4>Key Features</h4>
+                <ul class="feature-list">
+                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+            </div>
 
-    // Close on overlay click
-    overlay.addEventListener('click', () => {
-        projectCards.forEach(card => card.classList.remove('expanded'));
+            <div class="expanded-section">
+                <h4>Technology Stack</h4>
+                <div class="tech-stack">
+                    ${project.techStack.map(tech => `<span class="tech-item">${tech}</span>`).join('')}
+                </div>
+            </div>
+        `;
+
+        bottomSheetContent.innerHTML = content;
+        overlay.classList.add('active');
+        bottomSheet.classList.add('active');
+        body.style.overflow = 'hidden';
+    }
+
+    // Close bottom sheet
+    function closeBottomSheet() {
         overlay.classList.remove('active');
+        bottomSheet.classList.remove('active');
         body.style.overflow = '';
+        
+        setTimeout(() => {
+            bottomSheetContent.scrollTop = 0;
+        }, 400);
+    }
+
+    // Add click events to project cards
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.project-expand-btn')) {
+            const button = e.target.closest('.project-expand-btn');
+            const projectId = parseInt(button.getAttribute('data-project-id'));
+            openBottomSheet(projectId);
+        }
     });
+
+    // Close events
+    bottomSheetClose.addEventListener('click', closeBottomSheet);
+    overlay.addEventListener('click', closeBottomSheet);
 
     // Close on escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            projectCards.forEach(card => card.classList.remove('expanded'));
-            overlay.classList.remove('active');
-            body.style.overflow = '';
+        if (e.key === 'Escape' && bottomSheet.classList.contains('active')) {
+            closeBottomSheet();
         }
     });
 }
-
-// Handle page load and ensure everything is visible
-window.addEventListener('load', function() {
-    // Force carousel to be visible
-    const track = document.getElementById('projectsTrack');
-    if (track) {
-        track.style.transform = 'translateX(0)';
-    }
-    
-    // Ensure all project cards are visible
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.style.opacity = '1';
-        card.style.visibility = 'visible';
-    });
-});

@@ -1,0 +1,154 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "number": "001",
+      "name": "Project Alpha",
+      "emoji": "🚀",
+      "tags": ["Web App", "React", "Node"],
+      "description": "A comprehensive web application designed to streamline team collaboration and project management.",
+      "about": [
+        "A comprehensive web application designed to streamline team collaboration and project management. Built with modern technologies and best practices, this application showcases advanced React patterns and robust backend architecture.",
+        "The project was developed over 3 sprints with a focus on user experience, performance optimization, and scalability."
+      ],
+      "features": [
+        "Real-time collaboration with WebSocket integration",
+        "Advanced state management using Redux",
+        "Responsive design that works across all devices",
+        "RESTful API with comprehensive documentation",
+        "Authentication and authorization with JWT"
+      ],
+      "techStack": ["React 18", "Node.js", "Express", "MongoDB", "Socket.io", "Redux", "Tailwind CSS"],
+      "team": "Team Alpha",
+      "sprints": 3,
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "number": "002",
+      "name": "Project Beta",
+      "emoji": "💡",
+      "tags": ["Mobile", "Flutter"],
+      "description": "A cross-platform mobile application that brings innovative solutions to everyday problems.",
+      "about": [
+        "A cross-platform mobile application that brings innovative solutions to everyday problems. Developed using Flutter for seamless performance on both iOS and Android platforms.",
+        "This project emphasizes beautiful UI design, smooth animations, and intuitive user interactions."
+      ],
+      "features": [
+        "Native performance on iOS and Android",
+        "Offline-first architecture with local caching",
+        "Push notifications for real-time updates",
+        "Biometric authentication support",
+        "Dark mode and theme customization"
+      ],
+      "techStack": ["Flutter", "Dart", "Firebase", "Provider", "SQLite"],
+      "team": "Team Beta",
+      "sprints": 4,
+      "status": "Completed"
+    },
+    {
+      "id": 3,
+      "number": "003",
+      "name": "Project Gamma",
+      "emoji": "🎨",
+      "tags": ["Tool", "Python"],
+      "description": "A powerful automation tool that leverages Python's extensive ecosystem.",
+      "about": [
+        "A powerful automation tool that leverages Python's extensive ecosystem to solve complex data processing challenges. Built with scalability and efficiency in mind.",
+        "This tool has been used to process over 1 million data points with exceptional performance."
+      ],
+      "features": [
+        "High-performance data processing pipeline",
+        "Machine learning integration for predictions",
+        "Automated report generation",
+        "RESTful API for easy integration",
+        "Comprehensive logging and monitoring"
+      ],
+      "techStack": ["Python 3.11", "Pandas", "NumPy", "Scikit-learn", "FastAPI"],
+      "team": "Team Gamma",
+      "sprints": 3,
+      "status": "Completed"
+    },
+    {
+      "id": 4,
+      "number": "004",
+      "name": "Project Delta",
+      "emoji": "⚡",
+      "tags": ["API", "FastAPI"],
+      "description": "A high-performance REST API built with FastAPI.",
+      "about": [
+        "A high-performance REST API built with FastAPI, designed to handle thousands of requests per second. Features comprehensive documentation and robust error handling.",
+        "Deployed with containerization for easy scaling and management across different environments."
+      ],
+      "features": [
+        "Async/await for high concurrency",
+        "Automatic API documentation with Swagger",
+        "Input validation with Pydantic",
+        "Rate limiting and caching strategies",
+        "Comprehensive test coverage"
+      ],
+      "techStack": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Nginx"],
+      "team": "Team Delta",
+      "sprints": 2,
+      "status": "Completed"
+    }
+  ],
+  "stats": {
+    "linesOfCode": "127K",
+    "bugsFixed": "892",
+    "gitPushes": "1.2K",
+    "coffeeRuns": "∞"
+  },
+  "insights": [
+    {
+      "id": "q1",
+      "number": "Q1",
+      "question": "Favorite Sprint?",
+      "prompt": "Click to reveal answer",
+      "answer": "Sprint 3",
+      "context": "42% of students voted"
+    },
+    {
+      "id": "q2",
+      "number": "Q2",
+      "question": "Biggest Challenge?",
+      "prompt": "Click to reveal answer",
+      "answer": "Time Management",
+      "context": "Cited by 67% of teams"
+    },
+    {
+      "id": "q3",
+      "number": "Q3",
+      "question": "Most Used Tool?",
+      "prompt": "Click to reveal answer",
+      "answer": "GitHub",
+      "context": "Unanimous favorite platform"
+    },
+    {
+      "id": "q4",
+      "number": "Q4",
+      "question": "Least Favorite Sprint?",
+      "prompt": "Click to reveal answer",
+      "answer": "Sprint 1",
+      "context": "The learning curve phase"
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "Incredible creativity and execution. These projects demonstrate real-world professional skills.",
+      "author": "Exhibition Visitor"
+    },
+    {
+      "text": "The collaboration and agile methodology implementation was evident in every single project.",
+      "author": "Industry Professional"
+    },
+    {
+      "text": "Impressed by the polish, attention to detail, and user experience in these applications.",
+      "author": "Faculty Member"
+    },
+    {
+      "text": "These students are production-ready. The quality of work here is exceptional.",
+      "author": "Guest Speaker"
+    }
+  ]
+}

@@ -1,194 +1,109 @@
-// Wait for both DOM and GSAP to be ready
-window.addEventListener('DOMContentLoaded', function() {
-  
-  // Check if GSAP is loaded
-  if (typeof gsap === 'undefined') {
-    console.error('GSAP is not loaded. Hero animations will not work.');
-    return;
-  }
+// Create floating particles
+function initParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particlesContainer.appendChild(particle);
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Get elements
-  const statsSection = document.querySelector('.stats-section');
-  const hero = document.getElementById('hero');
-  const body = document.body;
-
-  // Only proceed if hero elements exist
-  if (!hero || !statsSection) {
-    console.warn('Hero or stats section not found');
-    return;
-  }
-
-  // Initial entrance animations
-  const tl = gsap.timeline({ 
-    defaults: { ease: "power3.out" }
-  });
-  
-  tl.to(".headline", { opacity: 1, x: 0, duration: 1, delay: 0.2 })
-    .to(".subheadline", { opacity: 1, x: 0, duration: 1 }, "-=0.7")
-    .to(".description", { opacity: 1, x: 0, duration: 1 }, "-=0.7")
-    .to(".cta-button", { opacity: 1, x: 0, duration: 1 }, "-=0.7")
-    .to(".content-right", { opacity: 1, scale: 1, duration: 1 }, "-=1")
-    .to(".scroll-indicator", { opacity: 1, duration: 1 }, "-=0.5");
-
-  // Scroll indicator bounce
-  gsap.to(".scroll-indicator", {
-    y: -10,
-    duration: 1,
-    repeat: -1,
-    yoyo: true,
-    ease: "power1.inOut",
-    delay: 2
-  });
-
-  // Circle shrink animation with ScrollTrigger
-  let statsAnimated = false;
-  let isAnimating = true;
-  let scrollProgress = 0;
-  let targetProgress = 0;
-  let animationComplete = false;
-
-  window.addEventListener('wheel', (e) => {
-    // Only intercept scroll during the hero transition phase
-    if (!animationComplete) {
-      e.preventDefault();
-      
-      // Update target progress based on wheel movement (both up and down)
-      targetProgress += e.deltaY * 0.0008;
-      targetProgress = Math.max(0, Math.min(1, targetProgress));
-      
-      // Check if scrolling back to beginning
-      if (targetProgress < 0.05) {
-        isAnimating = true;
-        animationComplete = false;
-      }
-      
-      // Once animation reaches near completion, mark as complete
-      if (targetProgress >= 0.99 && e.deltaY > 0) {
-        animationComplete = true;
-        isAnimating = false;
-        
-        // Completely transition to normal scrolling
-        setTimeout(() => {
-          hero.style.display = 'none';
-          statsSection.style.position = 'relative';
-          statsSection.style.opacity = 1;
-          body.style.overflow = 'auto';
-          
-          // CRITICAL: Refresh ScrollTrigger after changing layout
-          if (typeof ScrollTrigger !== 'undefined') {
-            ScrollTrigger.refresh();
-          }
-        }, 100);
-      }
-    } else {
-      // Check if user scrolls back up to the top
-      if (window.scrollY === 0 && e.deltaY < 0) {
-        e.preventDefault();
-        animationComplete = false;
-        isAnimating = true;
-        targetProgress = 0.8; // Start from near-end of animation
-        
-        // Reset to fixed positioning
-        hero.style.display = 'flex';
-        statsSection.style.position = 'fixed';
-        body.style.overflow = 'hidden';
-        
-        // CRITICAL: Refresh ScrollTrigger after changing layout
-        if (typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.refresh();
-        }
-      }
+        gsap.to(particle, {
+            y: -100 + Math.random() * 200,
+            x: -50 + Math.random() * 100,
+            opacity: Math.random() * 0.5,
+            duration: 3 + Math.random() * 4,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
     }
-  }, { passive: false });
+}
 
-  // Smooth animation loop
-  function animateTransition() {
-    // Smoothly interpolate towards target
-    scrollProgress += (targetProgress - scrollProgress) * 0.1;
-    
-    // Apply effects based on progress
-    const inset = scrollProgress * 45;
-    const radius = scrollProgress * 50;
-    const scale = 1 - (scrollProgress * 0.3);
-    
-    hero.style.clipPath = `inset(${inset}% ${inset}% ${inset}% ${inset}% round ${radius}%)`;
-    hero.style.transform = `scale(${scale})`;
-    
-    // Manage hero opacity and display
-    if (scrollProgress > 0.85) {
-      hero.style.opacity = Math.max(0, 1 - ((scrollProgress - 0.85) * 6.67));
-    } else if (scrollProgress > 0.65) {
-      hero.style.opacity = 1 - ((scrollProgress - 0.65) * 5);
-    } else {
-      hero.style.opacity = 1;
-    }
-    
-    // Show hero when scrolling back
-    if (scrollProgress < 0.9 && hero.style.display === 'none') {
-      hero.style.display = 'flex';
-    }
-    
-    // Manage stats section opacity
-    if (scrollProgress > 0.6) {
-      statsSection.style.opacity = Math.min(1, (scrollProgress - 0.6) * 2.5);
-    } else {
-      statsSection.style.opacity = 0;
-    }
-    
-    // Trigger stats animation when going forward past 70%
-    if (scrollProgress > 0.7 && !statsAnimated) {
-      statsAnimated = true;
-      animateStats();
-    }
-    
-    // Reset stats when scrolling back below 70%
-    if (scrollProgress < 0.7 && statsAnimated) {
-      statsAnimated = false;
-      // Reset stat opacities
-      document.querySelectorAll('.stat').forEach(stat => {
-        stat.style.opacity = 0;
-      });
-      // Reset counter values
-      document.querySelectorAll('.counter').forEach(counter => {
-        counter.textContent = '0';
-      });
-    }
-    
-    requestAnimationFrame(animateTransition);
-  }
-
-  animateTransition();
-
-  // Stats entrance animation
-  function animateStats() {
-    gsap.to(".stat", {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power2.out"
+// Initialize hero animations
+function initHeroAnimations() {
+    // Hero animations
+    gsap.from('.hero-label', {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        ease: 'power3.out'
     });
 
-    document.querySelectorAll('.counter').forEach(counter => {
-      animateCounter(counter);
+    gsap.from('.hero-title span', {
+        duration: 1.2,
+        y: 80,
+        opacity: 0,
+        stagger: 0.2,
+        delay: 0.3,
+        ease: 'power4.out'
     });
-  }
 
-  // Counter animation
-  function animateCounter(counter) {
-    const target = +counter.getAttribute('data-target');
-    const obj = { value: 0 };
-    
-    gsap.to(obj, {
-      value: target,
-      duration: 2,
-      ease: "power1.out",
-      onUpdate: function() {
-        counter.textContent = Math.ceil(obj.value);
-      }
+    gsap.from('.hero-subtitle', {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        delay: 0.8,
+        ease: 'power3.out'
     });
-  }
 
-});
+    gsap.from('.hero-meta span', {
+        duration: 0.8,
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        delay: 1.2,
+        ease: 'power3.out'
+    });
+
+    // Floating shapes animation
+    gsap.to('.shape-circle', {
+        y: -40,
+        x: 30,
+        rotation: 360,
+        duration: 20,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+
+    gsap.to('.shape-square', {
+        rotation: 405,
+        y: 30,
+        x: -20,
+        duration: 15,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+
+    gsap.to('.shape-triangle', {
+        y: 40,
+        x: -30,
+        rotation: -180,
+        duration: 18,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+    });
+
+    gsap.to('.shape-hexagon', {
+        y: -30,
+        x: 40,
+        rotation: 360,
+        duration: 22,
+        repeat: -1,
+        ease: 'sine.inOut'
+    });
+
+    // Corner UI fade in
+    gsap.from('.corner-ui', {
+        duration: 1,
+        opacity: 0,
+        delay: 1.5,
+        stagger: 0.1,
+        ease: 'power2.out'
+    });
+}
