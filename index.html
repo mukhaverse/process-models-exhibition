@@ -1,291 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Process Models Showcase</title>
-  <!-- Import styles in correct order -->
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="css/hero.css"/>
-  <link rel="stylesheet" href="css/timeline.css"/>
-  <link rel="stylesheet" href="css/behind-scenes.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCRUM Exhibition 2025</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="sty.css">
 </head>
 <body>
- 
-<!-- Hero Section -->
-<section class="welcome" id="hero">
-  <video autoplay muted loop class="background-video">
-    <source src="tryvid7.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+    <!-- Corner UI -->
+    <div class="corner-ui corner-ui-tl">[SCRUM]</div>
+    <div class="corner-ui corner-ui-tr">[+]</div>
+    <div class="corner-ui corner-ui-bl">001</div>
+    <div class="corner-ui corner-ui-br">[UJ]</div>
 
-  <div class="welcome-content">
-    <div class="content-left">
-      <h1 class="headline">Software Process Models Event</h1>
-      <h2 class="subheadline">
-        Showcasing The Work of The Next Generation of Software Engineers
-      </h2>
-      <p class="description">
-        This event brings together every team and their semester-long projects built using the Scrum methodology. After all those sprints, stand-ups, and endless Git pushes—why not share it?
-      </p>
-      <div class="cta-button">
-        <button onclick="gsap.to(window, {duration: 1, scrollTo: '#stats'})">Explore Projects</button>
-      </div>
-    </div>
-
-    <div class="content-right">
-      <div class="illustration-placeholder">
-        <svg viewBox="0 0 24 24">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <path d="M3 9h18M9 21V9"/>
-        </svg>
-        <p>Illustration Placeholder<br>550 x 550</p>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- Stats Section -->
-<section class="stats-section" id="stats">
-  <div class="stats-container">
-    <h2>Why Not Show It Off?</h2>
-    <p>
-      Months of hard work, collaboration, and problem-solving deserve recognition. Here's what we've accomplished together this semester.
-    </p>
-
-    <div class="stats">
-      <div class="stat">
-        <span class="counter" data-target="12">0</span>
-        <p>Projects Built</p>
-      </div>
-      <div class="stat">
-        <span class="counter" data-target="48">0</span>
-        <p>Students Collaborated</p>
-      </div>
-      <div class="stat">
-        <span class="counter" data-target="1200">0</span>
-        <p>Hours Logged</p>
-      </div>
-      <div class="stat">
-        <span class="counter" data-target="326">0</span>
-        <p>Bugs Fixed</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Spacer to allow scrolling -->
-<div class="spacer"></div>
-
-<!-- Timeline Section -->
-<section class="timeline-section">
-  <div class="timeline-wrapper">
-    <div class="timeline-container">
-      <svg viewBox="0 0 900 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Main path with dots -->
-        <path d="M9.89998 6C9.43671 8.28224 7.41896 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.41896 0 9.43671 1.71776 9.89998 4H295.1C295.563 1.71776 297.581 0 300 0C302.419 0 304.437 1.71776 304.9 4H595.1C595.563 1.71776 597.581 0 600 0C602.419 0 604.437 1.71776 604.9 4H890.1C890.563 1.71776 892.581 0 895 0C897.761 0 900 2.23858 900 5C900 7.76142 897.761 10 895 10C892.581 10 890.563 8.28224 890.1 6H604.9C604.437 8.28224 602.419 10 600 10C597.581 10 595.563 8.28224 595.1 6H304.9C304.437 8.28224 302.419 10 300 10C297.581 10 295.563 8.28224 295.1 6H9.89998Z" fill="#D9D9D9"/>
-        <mask id="timeline_mask" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="900" height="10">
-          <path d="M9.89998 6C9.43671 8.28224 7.41896 10 5 10C2.23858 10 0 7.76142 0 5C0 2.23858 2.23858 0 5 0C7.41896 0 9.43671 1.71776 9.89998 4H295.1C295.563 1.71776 297.581 0 300 0C302.419 0 304.437 1.71776 304.9 4H595.1C595.563 1.71776 597.581 0 600 0C602.419 0 604.437 1.71776 604.9 4H890.1C890.563 1.71776 892.581 0 895 0C897.761 0 900 2.23858 900 5C900 7.76142 897.761 10 895 10C892.581 10 890.563 8.28224 890.1 6H604.9C604.437 8.28224 602.419 10 600 10C597.581 10 595.563 8.28224 595.1 6H304.9C304.437 8.28224 302.419 10 300 10C297.581 10 295.563 8.28224 295.1 6H9.89998Z" fill="#D9D9D9"/>
-        </mask>
-        <g mask="url(#timeline_mask)">
-          <rect class="timeline-mask-rect" y="-49" height="99" fill="#000"/>
-        </g>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="particles" id="particles"></div>
+        <div class="floating-shape shape-circle"></div>
+        <div class="floating-shape shape-square"></div>
+        <div class="floating-shape shape-triangle"></div>
+        <div class="floating-shape shape-hexagon"></div>
         
-        <!-- Date labels -->
-        <text x="5" y="30" class="timeline-date-label">Sprint 0</text>
-        <text x="300" y="30" class="timeline-date-label">Sprint 1</text>
-        <text x="600" y="30" class="timeline-date-label">Sprint 2</text>
-        <text x="895" y="30" class="timeline-date-label" text-anchor="end">Sprint 3</text>
-      </svg>
-      
-      <section class="timeline-sec1 timeline-pin">
-        <span class="timeline-date">Project Initiation</span>
-        <h1>Sprint 0</h1>
-        <div class="timeline-col">
-          <p>Team formation, project ideation, and initial planning. Setting up development environments and establishing workflows.</p>
+        <div class="hero-content">
+            <div class="hero-label">EXHIBITION 2025</div>
+            <h1 class="hero-title">
+                <span class="hero-accent">AGILE</span>
+                <span>INNOVATION</span>
+            </h1>
+            <p class="hero-subtitle">
+                A semester of sprints, standups, and software that ships.
+            </p>
+            <div class="hero-meta">
+                <span>SPRING SEMESTER</span>
+                <span>12 TEAMS</span>
+                <span>24 PROJECTS</span>
+            </div>
         </div>
-      </section>
-      
-      <section class="timeline-sec2 timeline-pin">
-        <span class="timeline-date timeline-anim">Foundation Building</span>
-        <h1 class="timeline-anim">Sprint 1</h1>
-        <div class="timeline-col timeline-anim">
-          <p>Developing core features, establishing architecture patterns, and creating the initial product increment.</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-label">The Numbers</div>
+        <h2 class="section-title">BY THE <span class="hero-accent">METRICS</span></h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">127K</span>
+                <span class="stat-label">Lines Written</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">892</span>
+                <span class="stat-label">Bugs Fixed</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">1.2K</span>
+                <span class="stat-label">Git Pushes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">∞</span>
+                <span class="stat-label">Coffee Runs</span>
+            </div>
         </div>
-      </section>
-      
-      <section class="timeline-sec3 timeline-pin">
-        <span class="timeline-date timeline-anim">Feature Expansion</span>
-        <h1 class="timeline-anim">Sprint 2</h1>
-        <div class="timeline-col timeline-anim">
-          <p>Adding major functionality, integrating components, and enhancing user experience based on feedback.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section">
+        <div class="projects-header">
+            <div>
+                <div class="section-label">Our Work</div>
+                <h2 class="section-title">FEATURED <span class="hero-accent">PROJECTS</span></h2>
+            </div>
         </div>
-      </section>
-      
-      <section class="timeline-sec4 timeline-pin">
-        <span class="timeline-date timeline-anim">Final Polish</span>
-        <h1 class="timeline-anim">Sprint 3</h1>
-        <div class="timeline-col timeline-anim">
-          <p>Final feature implementations, bug fixes, performance optimization, and preparation for deployment.</p>
+        
+        <div class="projects-carousel-wrapper">
+            <button class="carousel-btn carousel-btn-prev" id="prevBtn">‹</button>
+            <div class="projects-carousel">
+                <div class="projects-track" id="projectsTrack">
+                    <div class="project-card">
+                        <button class="project-close">×</button>
+                        <div class="project-image">
+                            <div class="project-number">001</div>
+                            🚀
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-name">Project Alpha</h3>
+                            <div class="project-tags">
+                                <span class="tag">Web App</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Node</span>
+                            </div>
+                            <button class="btn btn-outline project-expand-btn"><span>Explore</span></button>
+                        </div>
+                        <div class="project-expanded-content">
+                            <div class="expanded-section">
+                                <h4>About the Project</h4>
+                                <p>A comprehensive web application designed to streamline team collaboration and project management. Built with modern technologies and best practices, this application showcases advanced React patterns and robust backend architecture.</p>
+                                <p>The project was developed over 3 sprints with a focus on user experience, performance optimization, and scalability.</p>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Key Features</h4>
+                                <ul class="feature-list">
+                                    <li>Real-time collaboration with WebSocket integration</li>
+                                    <li>Advanced state management using Redux</li>
+                                    <li>Responsive design that works across all devices</li>
+                                    <li>RESTful API with comprehensive documentation</li>
+                                    <li>Authentication and authorization with JWT</li>
+                                </ul>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Technology Stack</h4>
+                                <div class="tech-stack">
+                                    <span class="tech-item">React 18</span>
+                                    <span class="tech-item">Node.js</span>
+                                    <span class="tech-item">Express</span>
+                                    <span class="tech-item">MongoDB</span>
+                                    <span class="tech-item">Socket.io</span>
+                                    <span class="tech-item">Redux</span>
+                                    <span class="tech-item">Tailwind CSS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <button class="project-close">×</button>
+                        <div class="project-image">
+                            <div class="project-number">002</div>
+                            💡
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-name">Project Beta</h3>
+                            <div class="project-tags">
+                                <span class="tag">Mobile</span>
+                                <span class="tag">Flutter</span>
+                            </div>
+                            <button class="btn btn-outline project-expand-btn"><span>Explore</span></button>
+                        </div>
+                        <div class="project-expanded-content">
+                            <div class="expanded-section">
+                                <h4>About the Project</h4>
+                                <p>A cross-platform mobile application that brings innovative solutions to everyday problems. Developed using Flutter for seamless performance on both iOS and Android platforms.</p>
+                                <p>This project emphasizes beautiful UI design, smooth animations, and intuitive user interactions.</p>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Key Features</h4>
+                                <ul class="feature-list">
+                                    <li>Native performance on iOS and Android</li>
+                                    <li>Offline-first architecture with local caching</li>
+                                    <li>Push notifications for real-time updates</li>
+                                    <li>Biometric authentication support</li>
+                                    <li>Dark mode and theme customization</li>
+                                </ul>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Technology Stack</h4>
+                                <div class="tech-stack">
+                                    <span class="tech-item">Flutter</span>
+                                    <span class="tech-item">Dart</span>
+                                    <span class="tech-item">Firebase</span>
+                                    <span class="tech-item">Provider</span>
+                                    <span class="tech-item">SQLite</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <button class="project-close">×</button>
+                        <div class="project-image">
+                            <div class="project-number">003</div>
+                            🎨
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-name">Project Gamma</h3>
+                            <div class="project-tags">
+                                <span class="tag">Tool</span>
+                                <span class="tag">Python</span>
+                            </div>
+                            <button class="btn btn-outline project-expand-btn"><span>Explore</span></button>
+                        </div>
+                        <div class="project-expanded-content">
+                            <div class="expanded-section">
+                                <h4>About the Project</h4>
+                                <p>A powerful automation tool that leverages Python's extensive ecosystem to solve complex data processing challenges. Built with scalability and efficiency in mind.</p>
+                                <p>This tool has been used to process over 1 million data points with exceptional performance.</p>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Key Features</h4>
+                                <ul class="feature-list">
+                                    <li>High-performance data processing pipeline</li>
+                                    <li>Machine learning integration for predictions</li>
+                                    <li>Automated report generation</li>
+                                    <li>RESTful API for easy integration</li>
+                                    <li>Comprehensive logging and monitoring</li>
+                                </ul>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Technology Stack</h4>
+                                <div class="tech-stack">
+                                    <span class="tech-item">Python 3.11</span>
+                                    <span class="tech-item">Pandas</span>
+                                    <span class="tech-item">NumPy</span>
+                                    <span class="tech-item">Scikit-learn</span>
+                                    <span class="tech-item">FastAPI</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <button class="project-close">×</button>
+                        <div class="project-image">
+                            <div class="project-number">004</div>
+                            ⚡
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-name">Project Delta</h3>
+                            <div class="project-tags">
+                                <span class="tag">API</span>
+                                <span class="tag">FastAPI</span>
+                            </div>
+                            <button class="btn btn-outline project-expand-btn"><span>Explore</span></button>
+                        </div>
+                        <div class="project-expanded-content">
+                            <div class="expanded-section">
+                                <h4>About the Project</h4>
+                                <p>A high-performance REST API built with FastAPI, designed to handle thousands of requests per second. Features comprehensive documentation and robust error handling.</p>
+                                <p>Deployed with containerization for easy scaling and management across different environments.</p>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Key Features</h4>
+                                <ul class="feature-list">
+                                    <li>Async/await for high concurrency</li>
+                                    <li>Automatic API documentation with Swagger</li>
+                                    <li>Input validation with Pydantic</li>
+                                    <li>Rate limiting and caching strategies</li>
+                                    <li>Comprehensive test coverage</li>
+                                </ul>
+                            </div>
+                            <div class="expanded-section">
+                                <h4>Technology Stack</h4>
+                                <div class="tech-stack">
+                                    <span class="tech-item">FastAPI</span>
+                                    <span class="tech-item">PostgreSQL</span>
+                                    <span class="tech-item">Redis</span>
+                                    <span class="tech-item">Docker</span>
+                                    <span class="tech-item">Nginx</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn carousel-btn-next" id="nextBtn">›</button>
         </div>
-      </section>
-    </div>
-  </div>
-</section>
 
-<!-- Mini Interviews -->
-<section class="interviews">
-  <h2>Mini Interview Spotlight</h2>
-  <div class="cards">
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://via.placeholder.com/200x150" alt="Team Member">
-          <h3>Team Phoenix</h3>
+        <div class="view-all-container">
+            <a href="#" class="btn"><span>View All Projects</span></a>
         </div>
-        <div class="card-back">
-          <p><strong>Q:</strong> What was your biggest challenge?</p>
-          <p><strong>A:</strong> Managing sprint deadlines effectively.</p>
+    </section>
+
+    <!-- Questionnaire Section with Flip Cards -->
+    <section class="questionnaire-section">
+        <div class="section-label">Survey Results</div>
+        <h2 class="section-title">CLASS <span class="hero-accent">INSIGHTS</span></h2>
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="insight-card-inner">
+                    <div class="insight-card-front">
+                        <div>
+                            <div class="insight-number">Q1</div>
+                            <div class="insight-question">Favorite Sprint?</div>
+                            <div class="insight-prompt">Click to reveal answer</div>
+                        </div>
+                        <div class="click-hint">Click to Flip</div>
+                    </div>
+                    <div class="insight-card-back">
+                        <div>
+                            <div class="insight-number">Q1</div>
+                            <div class="insight-question">Favorite Sprint?</div>
+                            <div class="insight-answer">Sprint 3</div>
+                            <div class="insight-context">42% of students voted</div>
+                        </div>
+                        <div class="click-hint">Click to Flip Back</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-card-inner">
+                    <div class="insight-card-front">
+                        <div>
+                            <div class="insight-number">Q2</div>
+                            <div class="insight-question">Biggest Challenge?</div>
+                            <div class="insight-prompt">Click to reveal answer</div>
+                        </div>
+                        <div class="click-hint">Click to Flip</div>
+                    </div>
+                    <div class="insight-card-back">
+                        <div>
+                            <div class="insight-number">Q2</div>
+                            <div class="insight-question">Biggest Challenge?</div>
+                            <div class="insight-answer">Time Management</div>
+                            <div class="insight-context">Cited by 67% of teams</div>
+                        </div>
+                        <div class="click-hint">Click to Flip Back</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-card-inner">
+                    <div class="insight-card-front">
+                        <div>
+                            <div class="insight-number">Q3</div>
+                            <div class="insight-question">Most Used Tool?</div>
+                            <div class="insight-prompt">Click to reveal answer</div>
+                        </div>
+                        <div class="click-hint">Click to Flip</div>
+                    </div>
+                    <div class="insight-card-back">
+                        <div>
+                            <div class="insight-number">Q3</div>
+                            <div class="insight-question">Most Used Tool?</div>
+                            <div class="insight-answer">GitHub</div>
+                            <div class="insight-context">Unanimous favorite platform</div>
+                        </div>
+                        <div class="click-hint">Click to Flip Back</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <div class="insight-card-inner">
+                    <div class="insight-card-front">
+                        <div>
+                            <div class="insight-number">Q4</div>
+                            <div class="insight-question">Least Favorite Sprint?</div>
+                            <div class="insight-prompt">Click to reveal answer</div>
+                        </div>
+                        <div class="click-hint">Click to Flip</div>
+                    </div>
+                    <div class="insight-card-back">
+                        <div>
+                            <div class="insight-number">Q4</div>
+                            <div class="insight-question">Least Favorite Sprint?</div>
+                            <div class="insight-answer">Sprint 1</div>
+                            <div class="insight-context">The learning curve phase</div>
+                        </div>
+                        <div class="click-hint">Click to Flip Back</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://via.placeholder.com/200x150" alt="Team Member">
-          <h3>Team Nova</h3>
+    <!-- Feedback Carousel -->
+    <section class="feedback-section">
+        <div class="section-label">Testimonials</div>
+        <h2 class="section-title feedback-title">WHAT PEOPLE <span class="hero-accent">SAY</span></h2>
+        <div class="feedback-carousel">
+            <div class="feedback-card">
+                <p class="feedback-text">"Incredible creativity and execution. These projects demonstrate real-world professional skills."</p>
+                <p class="feedback-author">— Exhibition Visitor</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"The collaboration and agile methodology implementation was evident in every single project."</p>
+                <p class="feedback-author">— Industry Professional</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"Impressed by the polish, attention to detail, and user experience in these applications."</p>
+                <p class="feedback-author">— Faculty Member</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"These students are production-ready. The quality of work here is exceptional."</p>
+                <p class="feedback-author">— Guest Speaker</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"Incredible creativity and execution. These projects demonstrate real-world professional skills."</p>
+                <p class="feedback-author">— Exhibition Visitor</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"The collaboration and agile methodology implementation was evident in every single project."</p>
+                <p class="feedback-author">— Industry Professional</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"Impressed by the polish, attention to detail, and user experience in these applications."</p>
+                <p class="feedback-author">— Faculty Member</p>
+            </div>
+            <div class="feedback-card">
+                <p class="feedback-text">"These students are production-ready. The quality of work here is exceptional."</p>
+                <p class="feedback-author">— Guest Speaker</p>
+            </div>
         </div>
-        <div class="card-back">
-          <p><strong>Q:</strong> What did you learn from Scrum?</p>
-          <p><strong>A:</strong> How to collaborate efficiently as a team.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">SCRUM Exhibition 2025</p>
+            <p class="footer-text">Built with Agility</p>
         </div>
-      </div>
-    </div>
+    </footer>
 
-    <div class="card">
-      <div class="card-inner">
-        <div class="card-front">
-          <img src="https://via.placeholder.com/200x150" alt="Team Member">
-          <h3>Team Orbit</h3>
-        </div>
-        <div class="card-back">
-          <p><strong>Q:</strong> What are you most proud of?</p>
-          <p><strong>A:</strong> Delivering a working MVP by Sprint 3!</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Project Overlay -->
+    <div class="project-overlay" id="projectOverlay"></div>
 
-
-
-
-<!-- Projects Carousel -->
-<section class="projects">
-  <h2>Projects Showcase</h2>
-  <div class="carousel">
-    <div class="project-card">
-      <img src="placeholder.png" alt="Project 1">
-      <h3>TaskFlow</h3>
-      <p>Developed by Team Phoenix</p>
-      <div class="tags">
-        <span>#WebApp</span>
-        <span>#Scrum</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <img src="placeholder.png" alt="Project 2">
-      <h3>FitTrack</h3>
-      <p>Developed by Team Nova</p>
-      <div class="tags">
-        <span>#Mobile</span>
-        <span>#Health</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <img src="placeholder.png" alt="Project 3">
-      <h3>ShopEase</h3>
-      <p>Developed by Team Orbit</p>
-      <div class="tags">
-        <span>#Ecommerce</span>
-        <span>#Web</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <img src="placeholder.png" alt="Project 4">
-      <h3>EduConnect</h3>
-      <p>Developed by Team Stellar</p>
-      <div class="tags">
-        <span>#Education</span>
-        <span>#Platform</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- Behind the Scenes -->
-<section class="behind-scenes">
-   <div class="bts-wrapper">
-  <div class="bts-grid-container">
-  <button class="sctB">Scatter</button>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 1"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 2"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 3"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 4"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 5"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 6"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 7"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 8"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 9"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 10"></div>
-  <div class="bts-item"><img src="placeholder.png" alt="Photo 11"></div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-  <!-- <h2>Behind the Scenes</h2>
-  <div class="photo-area">
-    <button id="scatterBtn">See the Moments</button>
-    <div class="photos">
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-      <div class="photo"></div>
-    </div>
-  </div> -->
-
-</section>
-
-<!-- Footer -->
-<footer>
-  <p>© 2025 Software Process Models Showcase | Shumokh Alsharif</p>
-</footer>
-
-<!-- GSAP Library - Load once -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
-
-<!-- Your scripts -->
-<script src="index.js"></script>
-<script src="js/hero.js"></script>
-<script src="js/timeline.js"></script>
-<script src="js/behind-scenes.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
