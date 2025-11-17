@@ -1,96 +1,195 @@
 {
   "projects": [
-    {
+     {
       "id": 1,
       "number": "001",
-      "name": "Project Alpha",
-      "emoji": "🚀",
-      "tags": ["Web App", "React", "Node"],
-      "description": "A comprehensive web application designed to streamline team collaboration and project management.",
+      "name": "AgileFlow",
+      "emoji": "📊",
+      "team": "Team Alpha",
+      "sprints": 4,
+      "status": "Completed",
+      "tags": ["Productivity", "SCRUM", "SaaS"],
+      "description": "A comprehensive agile project management tool designed to streamline sprint planning and team collaboration.",
       "about": [
-        "A comprehensive web application designed to streamline team collaboration and project management. Built with modern technologies and best practices, this application showcases advanced React patterns and robust backend architecture.",
-        "The project was developed over 3 sprints with a focus on user experience, performance optimization, and scalability."
+        "AgileFlow revolutionizes how development teams manage their sprints and track progress. Built with modern web technologies, it provides real-time insights into team velocity and project health.",
+        "The platform integrates seamlessly with existing development workflows while providing powerful analytics and reporting capabilities."
       ],
       "features": [
-        "Real-time collaboration with WebSocket integration",
-        "Advanced state management using Redux",
-        "Responsive design that works across all devices",
-        "RESTful API with comprehensive documentation",
-        "Authentication and authorization with JWT"
+        "Real-time sprint tracking",
+        "Team velocity analytics",
+        "Burndown charts",
+        "Collaborative task management",
+        "Integration with popular dev tools"
       ],
-      "techStack": ["React 18", "Node.js", "Express", "MongoDB", "Socket.io", "Redux", "Tailwind CSS"],
-      "team": "Team Alpha",
-      "sprints": 3,
-      "status": "Completed"
+      "techStack": ["React", "Node.js", "MongoDB", "WebSocket", "D3.js"],
+      "demoUrl": "https://demo.example.com/agileflow",
+      "githubUrl": "https://github.com/team-alpha/agileflow",
+      "teamMembers": [
+        {
+          "name": "Team Member 1",
+          "linkedin": "https://linkedin.com/in/teammember1"
+        },
+        {
+          "name": "Team Member 2",
+          "linkedin": "https://linkedin.com/in/teammember2"
+        },
+        {
+          "name": "Team Member 3", 
+          "linkedin": "https://linkedin.com/in/teammember3"
+        }
+      ]
     },
     {
       "id": 2,
       "number": "002",
-      "name": "Project Beta",
-      "emoji": "💡",
-      "tags": ["Mobile", "Flutter"],
-      "description": "A cross-platform mobile application that brings innovative solutions to everyday problems.",
+      "name": "CodeCollab",
+      "emoji": "👨‍💻",
+      "team": "Team Beta",
+      "sprints": 3,
+      "status": "In Progress",
+      "tags": ["Collaboration", "Real-time", "WebRTC"],
+      "description": "A real-time code collaboration platform that enables developers to work together seamlessly.",
       "about": [
-        "A cross-platform mobile application that brings innovative solutions to everyday problems. Developed using Flutter for seamless performance on both iOS and Android platforms.",
-        "This project emphasizes beautiful UI design, smooth animations, and intuitive user interactions."
+        "CodeCollab brings the power of pair programming to distributed teams with real-time code editing, video chat, and integrated terminal.",
+        "Built with performance in mind, it handles multiple collaborators without compromising on speed or reliability."
       ],
       "features": [
-        "Native performance on iOS and Android",
-        "Offline-first architecture with local caching",
-        "Push notifications for real-time updates",
-        "Biometric authentication support",
-        "Dark mode and theme customization"
+        "Real-time code editing",
+        "Video and audio chat",
+        "Integrated terminal",
+        "Syntax highlighting for 50+ languages",
+        "Project sharing"
       ],
-      "techStack": ["Flutter", "Dart", "Firebase", "Provider", "SQLite"],
-      "team": "Team Beta",
-      "sprints": 4,
-      "status": "Completed"
+      "techStack": ["Vue.js", "Socket.io", "WebRTC", "Express", "Redis"],
+      "demoUrl": "https://demo.example.com/codecollab",
+      "githubUrl": "https://github.com/team-beta/codecollab",
+      "teamMembers": [
+        {
+          "name": "Team Member A",
+          "linkedin": "https://linkedin.com/in/teammemberA"
+        },
+        {
+          "name": "Team Member B",
+          "linkedin": "https://linkedin.com/in/teammemberB"
+        }
+      ]
     },
     {
       "id": 3,
       "number": "003",
-      "name": "Project Gamma",
-      "emoji": "🎨",
-      "tags": ["Tool", "Python"],
-      "description": "A powerful automation tool that leverages Python's extensive ecosystem.",
+      "name": "DataViz Pro",
+      "emoji": "📈",
+      "team": "Team Gamma",
+      "sprints": 5,
+      "status": "Completed",
+      "tags": ["Data Visualization", "Analytics", "Dashboard"],
+      "description": "An advanced data visualization platform that transforms complex datasets into interactive insights.",
       "about": [
-        "A powerful automation tool that leverages Python's extensive ecosystem to solve complex data processing challenges. Built with scalability and efficiency in mind.",
-        "This tool has been used to process over 1 million data points with exceptional performance."
+        "DataViz Pro empowers businesses to make data-driven decisions through intuitive visualizations and customizable dashboards.",
+        "The platform supports multiple data sources and provides real-time updates for dynamic data scenarios."
       ],
       "features": [
-        "High-performance data processing pipeline",
-        "Machine learning integration for predictions",
-        "Automated report generation",
-        "RESTful API for easy integration",
-        "Comprehensive logging and monitoring"
+        "Interactive charts and graphs",
+        "Custom dashboard creation",
+        "Real-time data streaming",
+        "Multiple data source integration",
+        "Export and sharing capabilities"
       ],
-      "techStack": ["Python 3.11", "Pandas", "NumPy", "Scikit-learn", "FastAPI"],
-      "team": "Team Gamma",
-      "sprints": 3,
-      "status": "Completed"
+      "techStack": ["Angular", "Python", "PostgreSQL", "D3.js", "FastAPI"],
+      "demoUrl": "https://demo.example.com/dataviz",
+      "githubUrl": "https://github.com/team-gamma/dataviz-pro",
+      "teamMembers": [
+        {
+          "name": "Team Member X",
+          "linkedin": "https://linkedin.com/in/teammemberX"
+        },
+        {
+          "name": "Team Member Y",
+          "linkedin": "https://linkedin.com/in/teammemberY"
+        },
+        {
+          "name": "Team Member Z",
+          "linkedin": "https://linkedin.com/in/teammemberZ"
+        }
+      ]
     },
     {
       "id": 4,
       "number": "004",
-      "name": "Project Delta",
-      "emoji": "⚡",
-      "tags": ["API", "FastAPI"],
-      "description": "A high-performance REST API built with FastAPI.",
+      "name": "SecureVault",
+      "emoji": "🔒",
+      "team": "Team Delta",
+      "sprints": 4,
+      "status": "Completed",
+      "tags": ["Security", "Encryption", "Password Manager"],
+      "description": "A secure password manager and digital vault with military-grade encryption.",
       "about": [
-        "A high-performance REST API built with FastAPI, designed to handle thousands of requests per second. Features comprehensive documentation and robust error handling.",
-        "Deployed with containerization for easy scaling and management across different environments."
+        "SecureVault provides individuals and teams with a secure way to manage passwords and sensitive information.",
+        "Using end-to-end encryption and zero-knowledge architecture, your data remains private and secure."
       ],
       "features": [
-        "Async/await for high concurrency",
-        "Automatic API documentation with Swagger",
-        "Input validation with Pydantic",
-        "Rate limiting and caching strategies",
-        "Comprehensive test coverage"
+        "Military-grade encryption",
+        "Cross-platform synchronization",
+        "Password generator",
+        "Secure sharing",
+        "Two-factor authentication"
       ],
-      "techStack": ["FastAPI", "PostgreSQL", "Redis", "Docker", "Nginx"],
-      "team": "Team Delta",
-      "sprints": 2,
-      "status": "Completed"
+      "techStack": ["React Native", "Node.js", "SQLite", "Crypto.js", "JWT"],
+      "demoUrl": "https://demo.example.com/securevault",
+      "githubUrl": "https://github.com/team-delta/securevault",
+      "teamMembers": [
+        {
+          "name": "Team Member Alpha",
+          "linkedin": "https://linkedin.com/in/teammemberAlpha"
+        },
+        {
+          "name": "Team Member Beta",
+          "linkedin": "https://linkedin.com/in/teammemberBeta"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "number": "005",
+      "name": "EcoTrack",
+      "emoji": "🌱",
+      "team": "Team Epsilon",
+      "sprints": 3,
+      "status": "In Progress",
+      "tags": ["Sustainability", "IoT", "Mobile"],
+      "description": "An IoT-powered environmental monitoring system for tracking carbon footprint and sustainability metrics.",
+      "about": [
+        "EcoTrack helps organizations and individuals monitor their environmental impact through connected sensors and mobile analytics.",
+        "The system provides actionable insights to reduce carbon footprint and promote sustainable practices."
+      ],
+      "features": [
+        "Real-time environmental monitoring",
+        "Carbon footprint calculation",
+        "Sustainability scoring",
+        "IoT sensor integration",
+        "Progress tracking and goals"
+      ],
+      "techStack": ["Flutter", "Python", "MQTT", "MongoDB", "TensorFlow"],
+      "demoUrl": "https://demo.example.com/ecotrack",
+      "githubUrl": "https://github.com/team-epsilon/ecotrack",
+      "teamMembers": [
+        {
+          "name": "Team Member One",
+          "linkedin": "https://linkedin.com/in/teammemberOne"
+        },
+        {
+          "name": "Team Member Two",
+          "linkedin": "https://linkedin.com/in/teammemberTwo"
+        },
+        {
+          "name": "Team Member Three",
+          "linkedin": "https://linkedin.com/in/teammemberThree"
+        },
+        {
+          "name": "Team Member Four",
+          "linkedin": "https://linkedin.com/in/teammemberFour"
+        }
+      ]
     }
   ],
   "stats": {

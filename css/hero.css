@@ -57,7 +57,7 @@
     transform: rotate(45deg);
 }
 
-.shape-triangle {
+/* .shape-triangle {
     width: 150px;
     height: 150px;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -65,9 +65,9 @@
     opacity: 0.08;
     top: 50%;
     right: 25%;
-}
+} */
 
-.shape-hexagon {
+/* .shape-hexagon {
     width: 150px;
     height: 150px;
     clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
@@ -76,7 +76,7 @@
     opacity: 0.12;
     bottom: 30%;
     left: 20%;
-}
+} */
 
 .hero-content {
     text-align: center;
@@ -86,7 +86,7 @@
 
 .hero-label {
     font-size: 0.875rem;
-    color: var(--mint);
+    color: var(--cream);
     letter-spacing: 0.3em;
     text-transform: uppercase;
     margin-bottom: 2rem;

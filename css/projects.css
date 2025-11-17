@@ -25,10 +25,11 @@
     gap: 2rem;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(0);
+    padding-right: 412px; /* card width + gap for last card visibility */
 }
 
 .project-card {
-    min-width: 380px;
+    width: 380px; /* Fixed width */
     flex-shrink: 0;
     background: var(--dark-navy);
     border: 1px solid rgba(0, 255, 159, 0.1);
@@ -36,8 +37,6 @@
     transition: all 0.4s ease;
     position: relative;
     cursor: pointer;
-      opacity: 1 !important;
-    visibility: visible;
 }
 
 .project-card::after {
@@ -59,13 +58,19 @@
 .project-image {
     width: 100%;
     height: 240px;
-    background: linear-gradient(135deg, rgba(0, 255, 159, 0.1), rgba(0, 255, 159, 0.02));
+    background: var(--dark);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 4rem;
     position: relative;
     overflow: hidden;
+}
+
+.project-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
 }
 
 .project-number {
@@ -76,10 +81,14 @@
     color: var(--mint);
     letter-spacing: 0.2em;
     font-weight: 600;
+    z-index: 2;
 }
 
 .project-content {
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 240px); /* Fixed content height */
 }
 
 .project-name {
@@ -88,6 +97,7 @@
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
     text-transform: uppercase;
+    line-height: 1.2;
 }
 
 .project-meta {
@@ -110,6 +120,7 @@
     opacity: 0.7;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    flex-grow: 1;
 }
 
 .project-tags {
@@ -154,7 +165,109 @@
 .carousel-btn-prev { left: 0; }
 .carousel-btn-next { right: 0; }
 
-/* Bottom Sheet Overlay */
+/* Bottom Sheet Styles */
+.bottom-sheet-project-image {
+    width: 100%;
+    height: 200px;
+    background: var(--dark);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.bottom-sheet-project-image .project-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bottom-sheet-project-number {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.75rem;
+    color: var(--mint);
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Project Actions */
+.project-actions {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.project-actions .btn {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+}
+
+/* Team Members Section */
+.team-members-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-members-section h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.team-members-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.team-member-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: var(--cream);
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.team-member-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.member-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.linkedin-icon {
+    color: var(--cream);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.team-member-link:hover .linkedin-icon {
+    opacity: 1;
+}
+
+/* Bottom Sheet Overlay and other existing styles remain the same */
 .project-overlay {
     position: fixed;
     top: 0;
@@ -194,7 +307,6 @@
     bottom: 0;
 }
 
-/* Bottom Sheet Header */
 .bottom-sheet-header {
     padding: 2rem;
     border-bottom: 1px solid rgba(0, 255, 159, 0.1);
@@ -238,54 +350,30 @@
     transform: rotate(90deg);
 }
 
-/* Bottom Sheet Content */
 .bottom-sheet-content {
     padding: 0 2rem 2rem;
-}
-
-.bottom-sheet-project-image {
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, rgba(0, 255, 159, 0.1), rgba(0, 255, 159, 0.02));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-.bottom-sheet-project-number {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 0.75rem;
-    color: var(--mint);
-    letter-spacing: 0.2em;
-    font-weight: 600;
-}
-
-/* Custom scrollbar for bottom sheet */
-.project-bottom-sheet::-webkit-scrollbar {
-    width: 8px;
-}
-
-.project-bottom-sheet::-webkit-scrollbar-track {
-    background: rgba(0, 255, 159, 0.1);
-}
-
-.project-bottom-sheet::-webkit-scrollbar-thumb {
-    background: var(--mint);
-    border-radius: 4px;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .projects-carousel-wrapper { padding: 0 50px; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-    .project-card { min-width: 300px; }
+    .project-card { width: 300px; }
+    .projects-track { padding-right: 332px; } /* adjusted for mobile card width */
     
+    .project-actions {
+        flex-direction: column;
+    }
+    
+    .project-actions .btn {
+        flex: none;
+        width: 100%;
+    }
+    
+    .team-member-link {
+        padding: 1rem;
+    }
+
     .project-bottom-sheet {
         width: 100vw;
         border-radius: 0;
@@ -308,7 +396,11 @@
     }
     
     .project-card {
-        min-width: 280px;
+        width: 280px;
+    }
+
+    .projects-track { 
+        padding-right: 312px; /* adjusted for smaller mobile */
     }
 
     .project-meta {

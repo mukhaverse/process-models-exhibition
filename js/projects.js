@@ -17,7 +17,7 @@ function renderProjects() {
         <div class="project-card" data-project-id="${project.id}">
             <div class="project-image">
                 <div class="project-number">${project.number}</div>
-                ${project.emoji}
+                <img src="placeholder.png" alt="${project.name}" class="project-placeholder">
             </div>
             <div class="project-content">
                 <h3 class="project-name">${project.name}</h3>
@@ -45,26 +45,20 @@ function initCarousel() {
     }
 
     let currentIndex = 0;
-
-    function getCardWidth() {
-        if (cards.length === 0) return 380 + 32;
-        const card = cards[0];
-        const cardWidth = card.offsetWidth;
-        const gap = 32; // Make sure this matches your CSS gap
-        return cardWidth + gap;
-    }
+    const cardWidth = 380; // Fixed width for all cards
+    const gap = 32;
 
     function getVisibleCardsCount() {
         const container = track.parentElement;
         const containerWidth = container.offsetWidth;
-        const cardWidth = getCardWidth();
-        const visible = Math.floor(containerWidth / cardWidth);
+        const totalCardWidth = cardWidth + gap;
+        const visible = Math.floor(containerWidth / totalCardWidth);
         return Math.max(1, visible);
     }
 
     function updateCarousel() {
-        const cardWidth = getCardWidth();
-        const offset = -currentIndex * cardWidth;
+        const totalCardWidth = cardWidth + gap;
+        const offset = -currentIndex * totalCardWidth;
         track.style.transform = `translateX(${offset}px)`;
         
         const visibleCards = getVisibleCardsCount();
@@ -91,7 +85,9 @@ function initCarousel() {
         }
     });
 
-    // Initialize
+    // Add right padding to show last card completely
+    track.style.paddingRight = `${cardWidth + gap}px`;
+
     updateCarousel();
     window.addEventListener('resize', updateCarousel);
 }
@@ -118,7 +114,7 @@ function initProjectExpansion() {
         const content = `
             <div class="bottom-sheet-project-image">
                 <div class="bottom-sheet-project-number">${project.number}</div>
-                ${project.emoji}
+                <img src="placeholder.png" alt="${project.name}" class="project-placeholder">
             </div>
             
             <div class="project-content">
@@ -139,12 +135,36 @@ function initProjectExpansion() {
                 ${project.about.map(paragraph => `<p>${paragraph}</p>`).join('')}
             </div>
 
-            <div class="expanded-section">
-                <h4>Key Features</h4>
-                <ul class="feature-list">
-                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                </ul>
+            <!-- Action Buttons -->
+            <div class="project-actions">
+                ${project.demoUrl ? `
+                    <a href="${project.demoUrl}" class="btn btn-primary" target="_blank" rel="noopener">
+                        <span>🚀 Live Demo</span>
+                    </a>
+                ` : ''}
+                ${project.githubUrl ? `
+                    <a href="${project.githubUrl}" class="btn btn-outline" target="_blank" rel="noopener">
+                        <span>💻 GitHub</span>
+                    </a>
+                ` : ''}
             </div>
+            
+            <!-- Team Members -->
+            ${project.teamMembers && project.teamMembers.length > 0 ? `
+                <div class="team-members-section">
+                    <h4>Team Members</h4>
+                    <div class="team-members-list">
+                        ${project.teamMembers.map(member => `
+                            <a href="${member.linkedin}" class="team-member-link" target="_blank" rel="noopener">
+                                <span class="member-name">${member.name}</span>
+                                <svg class="linkedin-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            ` : ''}
 
             <div class="expanded-section">
                 <h4>Technology Stack</h4>
@@ -170,7 +190,6 @@ function initProjectExpansion() {
         }, 400);
     }
 
-    // Add click events to project cards - using event delegation
     document.addEventListener('click', function(e) {
         const button = e.target.closest('.project-expand-btn');
         if (button) {
@@ -179,7 +198,6 @@ function initProjectExpansion() {
         }
     });
 
-    // Close events
     bottomSheetClose.addEventListener('click', closeBottomSheet);
     overlay.addEventListener('click', closeBottomSheet);
 
