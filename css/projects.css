@@ -36,7 +36,7 @@
     transition: all 0.4s ease;
     position: relative;
     cursor: pointer;
-    opacity: 1;
+      opacity: 1 !important;
     visibility: visible;
 }
 

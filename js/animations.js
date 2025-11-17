@@ -36,19 +36,26 @@ function initScrollAnimations() {
     animateStats();
 
     // Projects animation
-    gsap.from('.project-card', {
-        scrollTrigger: {
-            trigger: '.projects-section',
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none none'
-        },
-        x: 100,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
-    });
+    gsap.fromTo('.project-card', 
+            {
+                x: 100,
+                opacity: 0
+            },
+            {
+                scrollTrigger: {
+                    trigger: '.projects-section',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse',
+                    once: false
+                },
+                x: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.15,
+                ease: 'power3.out'
+            }
+        );
 
     // Insights animation
     gsap.from('.insight-card', {
