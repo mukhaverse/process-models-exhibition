@@ -43,7 +43,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    border: 1px solid var(--mint);
+    border: .4px solid var(--mint);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -52,7 +52,7 @@
 .project-card:hover::after { opacity: 1; }
 .project-card:hover {
     transform: translateY(-8px);
-    border-color: var(--mint);
+    border-color: var(--);
 }
 
 .project-image {
@@ -88,7 +88,7 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 240px); /* Fixed content height */
+    height: calc(100% - 240px); 
 }
 
 .project-name {
@@ -111,7 +111,7 @@
 .project-sprints,
 .project-status {
     font-size: 0.875rem;
-    color: var(--mint);
+    color: var(--cream);
     opacity: 0.8;
     font-weight: 500;
 }
@@ -164,6 +164,10 @@
 
 .carousel-btn-prev { left: 0; }
 .carousel-btn-next { right: 0; }
+
+
+
+
 
 /* Bottom Sheet Styles */
 .bottom-sheet-project-image {
@@ -267,7 +271,7 @@
     opacity: 1;
 }
 
-/* Bottom Sheet Overlay and other existing styles remain the same */
+
 .project-overlay {
     position: fixed;
     top: 0;
@@ -295,14 +299,18 @@
     max-width: 1200px;
     height: 85vh;
     background: var(--dark-navy);
-    border: 2px solid var(--mint);
+    /* border: 2px solid var(--mint); */
     border-radius: 20px 20px 0 0;
     z-index: 2000;
     overflow-y: auto;
     transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 -10px 50px rgba(0, 255, 159, 0.2);
+    /* box-shadow: 0 -10px 50px rgba(20, 21, 116, 0.2); */
+     scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
-
+.project-bottom-sheet::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
 .project-bottom-sheet.active {
     bottom: 0;
 }
@@ -359,7 +367,7 @@
     .projects-carousel-wrapper { padding: 0 50px; }
     .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
     .project-card { width: 300px; }
-    .projects-track { padding-right: 332px; } /* adjusted for mobile card width */
+    .projects-track { padding-right: 332px; } 
     
     .project-actions {
         flex-direction: column;
@@ -400,11 +408,82 @@
     }
 
     .projects-track { 
-        padding-right: 312px; /* adjusted for smaller mobile */
+        padding-right: 312px; 
     }
 
     .project-meta {
         flex-direction: column;
         gap: 0.5rem;
     }
+}
+
+/* CSS-only expand icon */
+/* Project Expand Button */
+.project-expand-container {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 3;
+}
+
+.project-expand-btn {
+    background: transparent;
+    color: var(--dark);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    transform: scale(1.2);
+}
+
+.project-expand-btn:hover {
+    transform: scale(1.4);
+
+}
+
+.project-expand-btn:active {
+    transform: scale(0.95);
+}
+
+/* Expand icon image styling */
+.expand-icon {
+    width: 20px;
+    height: 20px;
+    /* filter: brightness(0);  */
+    transition: all 0.3s ease;
+}
+
+/* .project-expand-btn:hover .expand-icon {
+    transform: translateX(2px);
+    filter: brightness(0); 
+} */
+
+/* Alternative: If you want the icon to be white instead */
+.expand-icon.white {
+    filter: brightness(0) invert(1); /* Makes black icon white */
+}
+
+/* .project-expand-btn:hover .expand-icon.white {
+    filter: brightness(0); /* Turns back to black on cream background */
+
+
+
+.project-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 240px);
+    position: relative;
+}
+
+.btn-outline {
+    display: none;
 }

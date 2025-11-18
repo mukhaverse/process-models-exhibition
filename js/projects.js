@@ -24,9 +24,11 @@ function renderProjects() {
                 <div class="project-tags">
                     ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
-                <button class="btn btn-outline project-expand-btn" data-project-id="${project.id}">
-                    <span>Explore</span>
-                </button>
+                <div class="project-expand-container">
+                    <button class="project-expand-btn" data-project-id="${project.id}">
+                        <img src="exp.png" alt="Expand" class="expand-icon white">
+                    </button>
+                </div>
             </div>
         </div>
     `).join('');

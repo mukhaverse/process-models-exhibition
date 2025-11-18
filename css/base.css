@@ -46,7 +46,7 @@ body {
 .section-label {
     text-align: center;
     font-size: 0.75rem;
-    color: var(--mint);
+    color: var(--cream);
     letter-spacing: 0.3em;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -116,7 +116,7 @@ body {
 
 /* Tags */
 .tag {
-    background: rgba(0, 255, 159, 0.1);
+    background: rgba(0, 255, 159, 0.);
     color: var(--mint);
     padding: 0.35rem 1rem;
     font-size: 0.75rem;

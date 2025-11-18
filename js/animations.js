@@ -32,7 +32,7 @@ function initScrollAnimations() {
         });
     });
 
-    // Stats animation with width expansion
+    // Stats animation 
     animateStats();
 
     // Projects animation
@@ -88,23 +88,22 @@ function initScrollAnimations() {
     });
 }
 
-// GSAP animation for stats - width grows from left to right
+
 function animateStats() {
     const statCards = document.querySelectorAll('.stat-card');
     
     if (statCards.length === 0) return;
     
-    // Set initial state - hidden with scaleX 0
+
     gsap.set(statCards, {
         scaleX: 0,
         transformOrigin: "left center"
     });
 
-    // Animate each card with stagger
     gsap.to(statCards, {
         scaleX: 1,
-        duration: 0.8,
-        stagger: 0.15,
+        duration: 1,
+        stagger: 0.5,
         ease: "power2.out",
         scrollTrigger: {
             trigger: ".stats-section",

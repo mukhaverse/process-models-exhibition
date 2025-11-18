@@ -8,7 +8,7 @@
       "team": "Team Alpha",
       "sprints": 4,
       "status": "Completed",
-      "tags": ["Productivity", "SCRUM", "SaaS"],
+      "tags": ["tag", "tag", "tag"],
       "description": "A comprehensive agile project management tool designed to streamline sprint planning and team collaboration.",
       "about": [
         "AgileFlow revolutionizes how development teams manage their sprints and track progress. Built with modern web technologies, it provides real-time insights into team velocity and project health.",
@@ -47,7 +47,7 @@
       "team": "Team Beta",
       "sprints": 3,
       "status": "In Progress",
-      "tags": ["Collaboration", "Real-time", "WebRTC"],
+      "tags": ["tag", "tag", "tag"],
       "description": "A real-time code collaboration platform that enables developers to work together seamlessly.",
       "about": [
         "CodeCollab brings the power of pair programming to distributed teams with real-time code editing, video chat, and integrated terminal.",
@@ -82,7 +82,7 @@
       "team": "Team Gamma",
       "sprints": 5,
       "status": "Completed",
-      "tags": ["Data Visualization", "Analytics", "Dashboard"],
+      "tags": ["tag", "tag", "tag"],
       "description": "An advanced data visualization platform that transforms complex datasets into interactive insights.",
       "about": [
         "DataViz Pro empowers businesses to make data-driven decisions through intuitive visualizations and customizable dashboards.",
@@ -121,7 +121,7 @@
       "team": "Team Delta",
       "sprints": 4,
       "status": "Completed",
-      "tags": ["Security", "Encryption", "Password Manager"],
+      "tags": ["tag", "tag", "tag", "tag", "tag"],
       "description": "A secure password manager and digital vault with military-grade encryption.",
       "about": [
         "SecureVault provides individuals and teams with a secure way to manage passwords and sensitive information.",
