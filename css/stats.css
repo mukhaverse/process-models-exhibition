@@ -44,7 +44,7 @@
 .stat-number {
     font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 700;
-    color: var(--mint);
+    color: var(--cream);
     display: block;
     margin-bottom: 1rem;
     line-height: 1;
@@ -53,10 +53,11 @@
 
 .stat-label {
     font-size: 0.875rem;
-    opacity: 0.6;
+    opacity: 1;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-weight: 500;
+    color: var(--prpl);
 }
 
 /* Responsive */
