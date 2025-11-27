@@ -251,7 +251,8 @@
 }
 
 .team-member-link:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(133, 104, 214, 0.1);
+    /* color: rgb(102, 102, 244); */
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
@@ -269,6 +270,7 @@
 
 .team-member-link:hover .linkedin-icon {
     opacity: 1;
+     color: rgb(102, 142, 244);
 }
 
 

@@ -1,0 +1,37 @@
+
+
+{
+  "gallery": [
+    {
+      "src": "placeholder.png",
+      "caption": "Opening Day",
+      "offset": -60
+    },
+    {
+      "src": "placeholder.png",
+      "caption": "Team Presentations",
+      "offset": 40
+    },
+    {
+      "src": "placeholder.png",
+      "caption": "Demo Sessions",
+      "offset": -80
+    },
+    {
+      "src": "placeholder.png",
+      "caption": "Networking",
+      "offset": 60
+    },
+    {
+      "src": "placeholder.png",
+      "caption": "Award Ceremony",
+      "offset": -40
+    },
+    {
+      "src": "placeholder.png",
+      "caption": "Final Sprint",
+      "offset": 80
+    }
+  ]
+}
+
