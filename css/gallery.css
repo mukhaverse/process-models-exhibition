@@ -26,8 +26,8 @@
 }
 
 .gallery-photo img {
-    width: 320px;
-    height: 420px;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     border: 2px solid rgba(0, 255, 159, 0.2);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
@@ -40,7 +40,7 @@
     transform: scale(1.02);
 }
 
-.gallery-caption {
+/* .gallery-caption {
     position: absolute;
     bottom: 1.5rem;
     left: 1.5rem;
@@ -54,6 +54,6 @@
     letter-spacing: 0.1em;
     font-size: 0.875rem;
     backdrop-filter: blur(10px);
-}
+} */
 
 

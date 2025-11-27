@@ -1,23 +1,23 @@
 // Render gallery photos
 function renderGallery() {
     const container = document.getElementById('galleryPhotos');
-    if (!container || !galleryData.gallery) return; // Change appData to galleryData
+    if (!container || !galleryData.gallery) return; 
     
-    galleryData.gallery.forEach((photo) => { // Change appData to galleryData
+    galleryData.gallery.forEach((photo) => { 
         const photoDiv = document.createElement('div');
         photoDiv.className = 'gallery-photo';
         photoDiv.style.transform = `translateY(${photo.offset}px)`;
         
         photoDiv.innerHTML = `
             <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
-            <div class="gallery-caption">${photo.caption}</div>
+            
         `;
         
         container.appendChild(photoDiv);
     });
 }
 
-// Initialize gallery scroll animation
+
 function initGalleryScroll() {
     const container = document.querySelector('.gallery-photos');
     if (!container) return;
@@ -36,7 +36,7 @@ function initGalleryScroll() {
         }
     });
     
-    // Fade in photos as they appear
+    
     gsap.to('.gallery-photo', {
         opacity: 1,
         duration: 0.6,
