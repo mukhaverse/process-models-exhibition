@@ -102,7 +102,7 @@ body {
 }
 
 .btn:hover::before { transform: translateX(0); }
-.btn:hover { box-shadow: 0 0 30px var(--mint-glow); }
+.btn:hover { box-shadow: 0 0 30px var(--mint-glow); color: var(--dark);}
 
 .btn-outline {
     background: transparent;

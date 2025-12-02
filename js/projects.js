@@ -1,6 +1,6 @@
-// Render projects section
-// Replace renderProjects in js/projects.js
+// Global data store 'appData' is assumed to be available from main.js
 
+// Render projects section
 function renderProjects() {
     const projectsTrack = document.getElementById('projectsTrack');
     
@@ -12,7 +12,7 @@ function renderProjects() {
     }
 
     projectsTrack.innerHTML = appData.projects.map(project => {
-        // Create a code-style sub-header from the first tag
+        
         const primaryTag = project.tags[0] 
             ? '.' + project.tags[0].toLowerCase().replace(/\s+/g, '_') 
             : '.project_file';
@@ -37,20 +37,20 @@ function renderProjects() {
         </div>
     `}).join('');
 }
+
 // Projects Carousel functionality
 function initCarousel() {
     const track = document.getElementById('projectsTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const cards = document.querySelectorAll('.project-card');
+    const cards = document.querySelectorAll('.project-card'); 
 
     if (!track || !prevBtn || !nextBtn || cards.length === 0) {
-        console.warn('Carousel elements not found');
         return;
     }
 
     let currentIndex = 0;
-    const cardWidth = 380; // Fixed width for all cards
+    const cardWidth = 380; 
     const gap = 32;
 
     function getVisibleCardsCount() {
@@ -90,14 +90,15 @@ function initCarousel() {
         }
     });
 
-    // Add right padding to show last card completely
+    
     track.style.paddingRight = `${cardWidth + gap}px`;
 
     updateCarousel();
     window.addEventListener('resize', updateCarousel);
 }
 
-// Project Bottom Sheet functionality
+
+
 function initProjectExpansion() {
     const overlay = document.getElementById('projectOverlay');
     const bottomSheet = document.getElementById('projectBottomSheet');
@@ -109,97 +110,7 @@ function initProjectExpansion() {
         return;
     }
 
-   // Update inside initProjectExpansion in js/projects.js
-
-function openBottomSheet(projectId) {
-    const project = appData.projects.find(p => p.id === projectId);
-    if (!project) return;
-
-    // Build the grid layout content
-    const content = `
-        <div class="sheet-hero">
-            <img src="placeholder.png" alt="${project.name}">
-            <div class="sheet-hero-overlay">
-                 </div>
-        </div>
-
-        <div class="sheet-grid">
-            
-            <div class="sheet-main">
-                <h3 class="sheet-title">${project.name}</h3>
-                
-                <div class="sheet-section">
-                    <div class="sheet-section-title">Project Overview</div>
-                    <p class="project-description">${project.description}</p>
-                    <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
-                        ${project.about.map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('')}
-                    </div>
-                </div>
-
-                <div class="sheet-section">
-                    <div class="sheet-section-title">Key Features</div>
-                    <ul class="feature-list">
-                        ${project.features ? project.features.map(f => `<li>${f}</li>`).join('') : ''}
-                    </ul>
-                </div>
-
-                <div class="project-actions">
-                    ${project.demoUrl ? `
-                        <a href="${project.demoUrl}" class="btn" target="_blank">🚀 Launch Demo</a>
-                    ` : ''}
-                    ${project.githubUrl ? `
-                        <a href="${project.githubUrl}" class="btn btn-outline" target="_blank">💻 View Code</a>
-                    ` : ''}
-                </div>
-            </div>
-
-            <div class="sheet-sidebar">
-                <div class="meta-item">
-                    <span class="meta-label">Team</span>
-                    <div class="meta-value">${project.team}</div>
-                </div>
-                
-                <div class="meta-item">
-                    <span class="meta-label">Sprint Duration</span>
-                    <div class="meta-value">${project.sprints} Sprints</div>
-                </div>
-
-                <div class="meta-item">
-                    <span class="meta-label">Status</span>
-                    <div class="meta-value" style="color: var(--mint)">${project.status}</div>
-                </div>
-
-                <div class="meta-item">
-                    <span class="meta-label">Tech Stack</span>
-                    <div class="tech-stack" style="margin-top: 0.5rem">
-                        ${project.techStack.map(tech => 
-                            `<span class="tag" style="font-size: 0.7rem">${tech}</span>`
-                        ).join('')}
-                    </div>
-                </div>
-
-                <div class="meta-item">
-                    <span class="meta-label">Developers</span>
-                    <div class="team-members-list" style="margin-top: 0.5rem">
-                        ${project.teamMembers.map(member => `
-                            <a href="${member.linkedin}" class="team-member-link" target="_blank">
-                                <span class="member-name">${member.name}</span>
-                                <i class='bx bxl-linkedin-square'></i>
-                            </a>
-                        `).join('')}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    `;
-
-    bottomSheetContent.innerHTML = content;
-    overlay.classList.add('active');
-    bottomSheet.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
+    
     function closeBottomSheet() {
         overlay.classList.remove('active');
         bottomSheet.classList.remove('active');
@@ -210,6 +121,106 @@ function openBottomSheet(projectId) {
         }, 400);
     }
 
+   
+    function openBottomSheet(projectId) {
+        const project = appData.projects.find(p => p.id === projectId);
+        if (!project) return;
+
+        // Conditional Rendering: Show "VIEW WEBSITE" button ONLY when platform is 'Website'
+       
+        const demoButton = (project.platform === 'Website' && project.demoUrl)
+            ? `<a href="${project.demoUrl}" class="btn btn-outline" target="_blank">🌐 VIEW WEBSITE</a>`
+            : '';
+            
+        
+        const githubButton = project.githubUrl
+            ? `<a href="${project.githubUrl}" class="btn " target="_blank">🗄️ GITHUB REPOSITORY</a>`
+            : '';
+
+
+       
+        const content = `
+            <div class="sheet-hero">
+                <img src="placeholder.png" alt="${project.name}">
+                <div class="sheet-hero-overlay">
+                    </div>
+            </div>
+
+            <div class="sheet-grid">
+                
+                <div class="sheet-main">
+                    <h3 class="sheet-title">${project.name}</h3>
+                    
+                    <div class="sheet-section">
+                        <div class="sheet-section-title">Project Overview</div>
+                        <p class="project-description">${project.description}</p>
+                        <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
+                            ${project.about.map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="sheet-section">
+                        <div class="sheet-section-title">Key Features</div>
+                        <ul class="feature-list">
+                            ${project.features ? project.features.map(f => `<li>${f}</li>`).join('') : ''}
+                        </ul>
+                    </div>
+
+                    <div class="project-actions">
+                        ${demoButton}
+                        ${githubButton}
+                    </div>
+                </div>
+
+                <div class="sheet-sidebar">
+                    <div class="meta-item">
+                        <span class="meta-label">SCRUM MASTER</span>
+                        <div class="meta-value">${project.scrumMaster || 'N/A'}</div>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <span class="meta-label">PLATFORM</span>
+                        <div class="meta-value">${project.platform || 'N/A'}</div>
+                    </div>
+
+                    <div class="meta-item">
+                        <span class="meta-label">SPRINTS</span>
+                        <div class="meta-value">${project.sprints} Sprints</div>
+                    </div>
+
+                    <div class="meta-item">
+                        <span class="meta-label">Tech Stack</span>
+                        <div class="tech-stack" style="margin-top: 0.5rem">
+                            ${project.techStack.map(tech => 
+                                `<span class="tag" style="font-size: 0.7rem">${tech}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+
+                    <div class="meta-item">
+                        <span class="meta-label">Developers</span>
+                        <div class="team-members-list" style="margin-top: 0.5rem">
+                            ${project.teamMembers.map(member => `
+                                <a href="${member.linkedin}" class="team-member-link" target="_blank">
+                                    <span class="member-name">${member.name}</span>
+                                    <i class='bx bxl-linkedin-square'></i>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        `;
+
+        bottomSheetContent.innerHTML = content;
+        overlay.classList.add('active');
+        bottomSheet.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+
+    
     document.addEventListener('click', function(e) {
         const button = e.target.closest('.project-expand-btn');
         if (button) {
@@ -218,6 +229,7 @@ function openBottomSheet(projectId) {
         }
     });
 
+   
     bottomSheetClose.addEventListener('click', closeBottomSheet);
     overlay.addEventListener('click', closeBottomSheet);
 

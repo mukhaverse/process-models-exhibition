@@ -5,10 +5,8 @@
       "number": "001",
       "name": "AgileFlow",
       "emoji": "📊",
-      "team": "Team Alpha",
-      "sprints": 4,
-      "status": "Completed",
-      "tags": ["tag", "tag", "tag"],
+      "sprints": 3,
+      "tags": ["Scrum", "Analytics", "SaaS"],
       "description": "A comprehensive agile project management tool designed to streamline sprint planning and team collaboration.",
       "about": [
         "AgileFlow revolutionizes how development teams manage their sprints and track progress. Built with modern web technologies, it provides real-time insights into team velocity and project health.",
@@ -24,6 +22,8 @@
       "techStack": ["React", "Node.js", "MongoDB", "WebSocket", "D3.js"],
       "demoUrl": "https://demo.example.com/agileflow",
       "githubUrl": "https://github.com/team-alpha/agileflow",
+      "scrumMaster": "Alex Chen",
+      "platform": "Website",
       "teamMembers": [
         {
           "name": "Team Member 1",
@@ -34,7 +34,7 @@
           "linkedin": "https://linkedin.com/in/teammember2"
         },
         {
-          "name": "Team Member 3", 
+          "name": "Team Member 3",
           "linkedin": "https://linkedin.com/in/teammember3"
         }
       ]
@@ -42,152 +42,34 @@
     {
       "id": 2,
       "number": "002",
-      "name": "CodeCollab",
-      "emoji": "👨‍💻",
-      "team": "Team Beta",
+      "name": "Mobile Task Manager",
+      "emoji": "📱",
       "sprints": 3,
-      "status": "In Progress",
-      "tags": ["tag", "tag", "tag"],
-      "description": "A real-time code collaboration platform that enables developers to work together seamlessly.",
+      "tags": ["Mobile", "Productivity", "Native"],
+      "description": "A cross-platform mobile application built for efficient task organization and tracking while on the go.",
       "about": [
-        "CodeCollab brings the power of pair programming to distributed teams with real-time code editing, video chat, and integrated terminal.",
-        "Built with performance in mind, it handles multiple collaborators without compromising on speed or reliability."
+        "This manager features offline synchronization, gestural controls, and persistent local storage to ensure data integrity and a smooth user experience.",
+        "The architecture is designed for low power consumption and high responsiveness, making it ideal for busy professionals."
       ],
       "features": [
-        "Real-time code editing",
-        "Video and audio chat",
-        "Integrated terminal",
-        "Syntax highlighting for 50+ languages",
-        "Project sharing"
+        "Offline data sync",
+        "Intuitive swipe gestures",
+        "Biometric security options",
+        "Customizable theme settings"
       ],
-      "techStack": ["Vue.js", "Socket.io", "WebRTC", "Express", "Redis"],
-      "demoUrl": "https://demo.example.com/codecollab",
-      "githubUrl": "https://github.com/team-beta/codecollab",
+      "techStack": ["React Native", "Expo", "RealmDB", "Redux"],
+      "demoUrl": "https://mobile-demo-link.com",
+      "githubUrl": "https://github.com/mobile-team/taskmanager",
+      "scrumMaster": "Jane Doe",
+      "platform": "Mobile App",
       "teamMembers": [
         {
-          "name": "Team Member A",
-          "linkedin": "https://linkedin.com/in/teammemberA"
+          "name": "Team Member 4",
+          "linkedin": "https://linkedin.com/in/teammember4"
         },
         {
-          "name": "Team Member B",
-          "linkedin": "https://linkedin.com/in/teammemberB"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "number": "003",
-      "name": "DataViz Pro",
-      "emoji": "📈",
-      "team": "Team Gamma",
-      "sprints": 5,
-      "status": "Completed",
-      "tags": ["tag", "tag", "tag"],
-      "description": "An advanced data visualization platform that transforms complex datasets into interactive insights.",
-      "about": [
-        "DataViz Pro empowers businesses to make data-driven decisions through intuitive visualizations and customizable dashboards.",
-        "The platform supports multiple data sources and provides real-time updates for dynamic data scenarios."
-      ],
-      "features": [
-        "Interactive charts and graphs",
-        "Custom dashboard creation",
-        "Real-time data streaming",
-        "Multiple data source integration",
-        "Export and sharing capabilities"
-      ],
-      "techStack": ["Angular", "Python", "PostgreSQL", "D3.js", "FastAPI"],
-      "demoUrl": "https://demo.example.com/dataviz",
-      "githubUrl": "https://github.com/team-gamma/dataviz-pro",
-      "teamMembers": [
-        {
-          "name": "Team Member X",
-          "linkedin": "https://linkedin.com/in/teammemberX"
-        },
-        {
-          "name": "Team Member Y",
-          "linkedin": "https://linkedin.com/in/teammemberY"
-        },
-        {
-          "name": "Team Member Z",
-          "linkedin": "https://linkedin.com/in/teammemberZ"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "number": "004",
-      "name": "SecureVault",
-      "emoji": "🔒",
-      "team": "Team Delta",
-      "sprints": 4,
-      "status": "Completed",
-      "tags": ["tag", "tag", "tag", "tag", "tag"],
-      "description": "A secure password manager and digital vault with military-grade encryption.",
-      "about": [
-        "SecureVault provides individuals and teams with a secure way to manage passwords and sensitive information.",
-        "Using end-to-end encryption and zero-knowledge architecture, your data remains private and secure."
-      ],
-      "features": [
-        "Military-grade encryption",
-        "Cross-platform synchronization",
-        "Password generator",
-        "Secure sharing",
-        "Two-factor authentication"
-      ],
-      "techStack": ["React Native", "Node.js", "SQLite", "Crypto.js", "JWT"],
-      "demoUrl": "https://demo.example.com/securevault",
-      "githubUrl": "https://github.com/team-delta/securevault",
-      "teamMembers": [
-        {
-          "name": "Team Member Alpha",
-          "linkedin": "https://linkedin.com/in/teammemberAlpha"
-        },
-        {
-          "name": "Team Member Beta",
-          "linkedin": "https://linkedin.com/in/teammemberBeta"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "number": "005",
-      "name": "EcoTrack",
-      "emoji": "🌱",
-      "team": "Team Epsilon",
-      "sprints": 3,
-      "status": "In Progress",
-      "tags": ["Sustainability", "IoT", "Mobile"],
-      "description": "An IoT-powered environmental monitoring system for tracking carbon footprint and sustainability metrics.",
-      "about": [
-        "EcoTrack helps organizations and individuals monitor their environmental impact through connected sensors and mobile analytics.",
-        "The system provides actionable insights to reduce carbon footprint and promote sustainable practices."
-      ],
-      "features": [
-        "Real-time environmental monitoring",
-        "Carbon footprint calculation",
-        "Sustainability scoring",
-        "IoT sensor integration",
-        "Progress tracking and goals"
-      ],
-      "techStack": ["Flutter", "Python", "MQTT", "MongoDB", "TensorFlow"],
-      "demoUrl": "https://demo.example.com/ecotrack",
-      "githubUrl": "https://github.com/team-epsilon/ecotrack",
-      "teamMembers": [
-        {
-          "name": "Team Member One",
-          "linkedin": "https://linkedin.com/in/teammemberOne"
-        },
-        {
-          "name": "Team Member Two",
-          "linkedin": "https://linkedin.com/in/teammemberTwo"
-        },
-        {
-          "name": "Team Member Three",
-          "linkedin": "https://linkedin.com/in/teammemberThree"
-        },
-        {
-          "name": "Team Member Four",
-          "linkedin": "https://linkedin.com/in/teammemberFour"
+          "name": "Team Member 5",
+          "linkedin": "https://linkedin.com/in/teammember5"
         }
       ]
     }
