@@ -7,28 +7,55 @@
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
+    /* Define 4 columns with uneven proportions for a dynamic desktop layout */
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr; 
+    gap: 1.5rem; 
     max-width: 1400px;
     margin: 0 auto;
-    background: rgba(0, 255, 159, 0.1);
+    background: none; 
 }
+
+/* Assign all cards to span 2 columns to create a 2x2 grid within the uneven columns */
+.stat-card-1 { grid-column: 1 / span 2; } 
+.stat-card-2 { grid-column: 3 / span 2; }
+.stat-card-3 { grid-column: 1 / span 2; } 
+.stat-card-4 { grid-column: 3 / span 2; } 
 
 .stat-card {
     background: var(--dark);
-    padding: 3rem 2rem;
+    padding: 3.5rem 2rem; 
     text-align: center;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    /* REMOVED: opacity and transform declarations that conflict with GSAP */
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 12px; 
+    
+    /* Animation Initial State (Used by JS) */
+    opacity: 0; 
+    visibility: hidden; 
 }
 
+/* Corner Accent */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px; 
+    height: 30px;
+    border-bottom: 3px solid var(--mint); 
+    border-right: 3px solid var(--mint);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* Hover Gradient Effect */
 .stat-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, transparent, rgba(0, 255, 159, 0.05));
+    background: linear-gradient(135deg, transparent, rgba(0, 255, 159, 0.08)); 
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -39,28 +66,49 @@
 
 .stat-card:hover { 
     background: var(--dark-navy); 
+    transform: translateY(-4px); 
+}
+.stat-card:hover::after {
+    opacity: 1;
+    border-color: var(--prpl); 
 }
 
 .stat-number {
     font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 700;
+    font-weight: 800; 
     color: var(--cream);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.05em; 
 }
 
 .stat-label {
-    font-size: 0.875rem;
+    font-size: 0.95rem; 
     opacity: 1;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 500;
-    color: var(--prpl);
+    letter-spacing: 0.2em; 
+    font-weight: 600; 
+    color: var(--mint); 
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .stats-grid { grid-template-columns: 1fr; }
+@media (max-width: 1023px) {
+    .stats-grid { 
+        grid-template-columns: 1fr 1fr; /* 2x2 grid on tablet */
+        gap: 1rem;
+    }
+    /* Reset spans for clean 2x2 */
+    .stat-card-1, .stat-card-2, .stat-card-3, .stat-card-4 {
+        grid-column: span 1; 
+    }
+}
+
+@media (max-width: 500px) {
+    .stats-grid { 
+        grid-template-columns: 1fr; /* Stacked grid on mobile */
+    }
+    .stat-card {
+        padding: 2.5rem 1.5rem;
+    }
 }

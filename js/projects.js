@@ -1,29 +1,33 @@
 // Render projects section
+// Replace renderProjects in js/projects.js
+
 function renderProjects() {
     const projectsTrack = document.getElementById('projectsTrack');
     
-    if (!projectsTrack) {
-        console.error('Projects track element not found');
-        return;
-    }
+    if (!projectsTrack) return;
 
     if (!appData.projects || appData.projects.length === 0) {
-        console.warn('No projects data available');
         projectsTrack.innerHTML = '<div class="no-projects">No projects to display</div>';
         return;
     }
 
-    projectsTrack.innerHTML = appData.projects.map(project => `
+    projectsTrack.innerHTML = appData.projects.map(project => {
+        // Create a code-style sub-header from the first tag
+        const primaryTag = project.tags[0] 
+            ? '.' + project.tags[0].toLowerCase().replace(/\s+/g, '_') 
+            : '.project_file';
+
+        return `
         <div class="project-card" data-project-id="${project.id}">
             <div class="project-image">
                 <div class="project-number">${project.number}</div>
                 <img src="placeholder.png" alt="${project.name}" class="project-placeholder">
             </div>
             <div class="project-content">
+                <div class="project-type">${primaryTag}</div>
                 <h3 class="project-name">${project.name}</h3>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                </div>
+                <p class="project-short-desc">${project.description}</p>
+                
                 <div class="project-expand-container">
                     <button class="project-expand-btn" data-project-id="${project.id}">
                         <img src="exp.png" alt="Expand" class="expand-icon white">
@@ -31,9 +35,8 @@ function renderProjects() {
                 </div>
             </div>
         </div>
-    `).join('');
+    `}).join('');
 }
-
 // Projects Carousel functionality
 function initCarousel() {
     const track = document.getElementById('projectsTrack');
@@ -106,81 +109,96 @@ function initProjectExpansion() {
         return;
     }
 
-    function openBottomSheet(projectId) {
-        const project = appData.projects.find(p => p.id === projectId);
-        if (!project) {
-            console.warn('Project not found:', projectId);
-            return;
-        }
+   // Update inside initProjectExpansion in js/projects.js
 
-        const content = `
-            <div class="bottom-sheet-project-image">
-                <div class="bottom-sheet-project-number">${project.number}</div>
-                <img src="placeholder.png" alt="${project.name}" class="project-placeholder">
-            </div>
+function openBottomSheet(projectId) {
+    const project = appData.projects.find(p => p.id === projectId);
+    if (!project) return;
+
+    // Build the grid layout content
+    const content = `
+        <div class="sheet-hero">
+            <img src="placeholder.png" alt="${project.name}">
+            <div class="sheet-hero-overlay">
+                 </div>
+        </div>
+
+        <div class="sheet-grid">
             
-            <div class="project-content">
-                <h3 class="project-name">${project.name}</h3>
-                <div class="project-meta">
-                    <span class="project-team">${project.team}</span>
-                    <span class="project-sprints">${project.sprints} Sprints</span>
-                    <span class="project-status">${project.status}</span>
+            <div class="sheet-main">
+                <h3 class="sheet-title">${project.name}</h3>
+                
+                <div class="sheet-section">
+                    <div class="sheet-section-title">Project Overview</div>
+                    <p class="project-description">${project.description}</p>
+                    <div style="margin-top: 1rem; line-height: 1.8; opacity: 0.8;">
+                        ${project.about.map(p => `<p style="margin-bottom:1rem">${p}</p>`).join('')}
+                    </div>
                 </div>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+
+                <div class="sheet-section">
+                    <div class="sheet-section-title">Key Features</div>
+                    <ul class="feature-list">
+                        ${project.features ? project.features.map(f => `<li>${f}</li>`).join('') : ''}
+                    </ul>
                 </div>
-                <p class="project-description">${project.description}</p>
+
+                <div class="project-actions">
+                    ${project.demoUrl ? `
+                        <a href="${project.demoUrl}" class="btn" target="_blank">🚀 Launch Demo</a>
+                    ` : ''}
+                    ${project.githubUrl ? `
+                        <a href="${project.githubUrl}" class="btn btn-outline" target="_blank">💻 View Code</a>
+                    ` : ''}
+                </div>
             </div>
 
-            <div class="expanded-section">
-                <h4>About the Project</h4>
-                ${project.about.map(paragraph => `<p>${paragraph}</p>`).join('')}
-            </div>
+            <div class="sheet-sidebar">
+                <div class="meta-item">
+                    <span class="meta-label">Team</span>
+                    <div class="meta-value">${project.team}</div>
+                </div>
+                
+                <div class="meta-item">
+                    <span class="meta-label">Sprint Duration</span>
+                    <div class="meta-value">${project.sprints} Sprints</div>
+                </div>
 
-            <!-- Action Buttons -->
-            <div class="project-actions">
-                ${project.demoUrl ? `
-                    <a href="${project.demoUrl}" class="btn btn-primary" target="_blank" rel="noopener">
-                        <span>🚀 Live Demo</span>
-                    </a>
-                ` : ''}
-                ${project.githubUrl ? `
-                    <a href="${project.githubUrl}" class="btn btn-outline" target="_blank" rel="noopener">
-                        <span>💻 GitHub</span>
-                    </a>
-                ` : ''}
-            </div>
-            
-            <!-- Team Members -->
-            ${project.teamMembers && project.teamMembers.length > 0 ? `
-                <div class="team-members-section">
-                    <h4>Team Members</h4>
-                    <div class="team-members-list">
+                <div class="meta-item">
+                    <span class="meta-label">Status</span>
+                    <div class="meta-value" style="color: var(--mint)">${project.status}</div>
+                </div>
+
+                <div class="meta-item">
+                    <span class="meta-label">Tech Stack</span>
+                    <div class="tech-stack" style="margin-top: 0.5rem">
+                        ${project.techStack.map(tech => 
+                            `<span class="tag" style="font-size: 0.7rem">${tech}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                <div class="meta-item">
+                    <span class="meta-label">Developers</span>
+                    <div class="team-members-list" style="margin-top: 0.5rem">
                         ${project.teamMembers.map(member => `
-                            <a href="${member.linkedin}" class="team-member-link" target="_blank" rel="noopener">
+                            <a href="${member.linkedin}" class="team-member-link" target="_blank">
                                 <span class="member-name">${member.name}</span>
-                                <svg class="linkedin-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                </svg>
+                                <i class='bx bxl-linkedin-square'></i>
                             </a>
                         `).join('')}
                     </div>
                 </div>
-            ` : ''}
-
-            <div class="expanded-section">
-                <h4>Technology Stack</h4>
-                <div class="tech-stack">
-                    ${project.techStack.map(tech => `<span class="tech-item">${tech}</span>`).join('')}
-                </div>
             </div>
-        `;
 
-        bottomSheetContent.innerHTML = content;
-        overlay.classList.add('active');
-        bottomSheet.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+        </div>
+    `;
+
+    bottomSheetContent.innerHTML = content;
+    overlay.classList.add('active');
+    bottomSheet.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
     function closeBottomSheet() {
         overlay.classList.remove('active');

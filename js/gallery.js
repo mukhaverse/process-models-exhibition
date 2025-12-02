@@ -29,7 +29,7 @@ function initGalleryScroll() {
         ease: 'none',
         scrollTrigger: {
             trigger: '.gallery-scroll-container',
-            start: 'top top',
+            start: 'top 20%',
             end: () => `+=${totalWidth}`,
             scrub: 1,
             pin: true

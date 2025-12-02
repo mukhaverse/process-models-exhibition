@@ -1,50 +1,96 @@
+// Register ScrollTrigger globally once
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
 // Render stats section
 function renderStats() {
     const statsGrid = document.getElementById('statsGrid');
-    if (!statsGrid || !appData.stats) return;
+    
+    // Using new realistic data points
+    const newStats = {
+      "studentsCollaborated": 14,
+      "bugsFixed": 950,
+      "gitPushes": 4500,
+      "hoursSpent": 2100
+    };
 
+    if (!statsGrid || !newStats) return;
+
+    // Data structure for rendering
     const stats = [
-        { number: appData.stats.linesOfCode, label: 'Lines Written' },
-        { number: appData.stats.bugsFixed, label: 'Bugs Fixed' },
-        { number: appData.stats.gitPushes, label: 'Git Pushes' },
-        { number: appData.stats.coffeeRuns, label: 'Coffee Runs' }
+        { number: newStats.studentsCollaborated, label: 'Students Collaborated', unit: '' },
+        { number: newStats.bugsFixed, label: 'Bugs Fixed', unit: '+' },
+        { number: newStats.gitPushes, label: 'Git Pushes', unit: '+' },
+        { number: newStats.hoursSpent, label: 'Hours Spent', unit: '+' }
     ];
 
-    statsGrid.innerHTML = stats.map(stat => `
-        <div class="stat-card">
-            <span class="stat-number">${stat.number}</span>
+    statsGrid.innerHTML = stats.map((stat, index) => `
+        <div class="stat-card stat-card-${index + 1}">
+            <span class="stat-number" data-target="${stat.number}" data-unit="${stat.unit}">0</span>
             <span class="stat-label">${stat.label}</span>
         </div>
     `).join('');
 }
 
-// GSAP animation for stats - width grows from left to right
+// GSAP animation for stats (Count-Up and Elastic Bounce)
 function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
     const statCards = document.querySelectorAll('.stat-card');
     
+    // Critical check: if no cards are found, stop execution.
     if (statCards.length === 0) {
-        console.warn('No stat cards found for animation');
+        console.warn("AnimateStats: No stat cards found. Rendering may have failed.");
         return;
     }
     
-    // Set initial state IMMEDIATELY after cards are in DOM
-    gsap.set(statCards, {
-        scaleX: 0,
-        transformOrigin: "left center",
-        opacity: 1
-    });
+    // 1. CRITICAL FIX: Override CSS 'opacity: 0;' and 'visibility: hidden;' immediately.
+    // This ensures the element is visible before animation starts.
+    gsap.set(statCards, { opacity: 1, visibility: "visible" });
 
-    // Animate each card with stagger
-    gsap.to(statCards, {
-        scaleX: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".stats-section",
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none"
+    // 2. Animate the container cards (visual bounce/fade in)
+    gsap.from(statCards, 
+        {
+            y: 50,
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.2,
+            stagger: 0.15, 
+            ease: "elastic.out(1, 0.5)",
+            scrollTrigger: {
+                trigger: ".stats-section",
+                start: "top 80%", 
+                toggleActions: "play none none reverse"
+            }
         }
+    );
+
+    // 3. Animate the count-up for the numbers
+    statNumbers.forEach(numberEl => {
+        const targetValue = parseInt(numberEl.getAttribute('data-target'));
+        const unit = numberEl.getAttribute('data-unit') || '';
+        
+        // Use a unique ID to prevent double-triggering
+        const triggerID = 'countUp-' + targetValue + '-' + Math.random().toString(36).substring(7);
+        
+        const counter = { value: 0 };
+
+        gsap.to(counter, {
+            value: targetValue,
+            duration: 2.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                id: triggerID,
+                trigger: numberEl,
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            onUpdate: () => {
+                numberEl.textContent = Math.ceil(counter.value).toLocaleString('en-US') + unit;
+            },
+            onComplete: () => {
+                numberEl.textContent = targetValue.toLocaleString('en-US') + unit;
+            }
+        });
     });
 }

@@ -193,11 +193,11 @@
     }
   ],
   "stats": {
-    "linesOfCode": "127K",
-    "bugsFixed": "892",
-    "gitPushes": "1.2K",
-    "coffeeRuns": "∞"
-  },
+  "studentsCollaborated": 14,
+  "bugsFixed": 950,
+  "gitPushes": 4500,
+  "hoursSpent": 2100
+},
   "insights": [
     {
       "id": "q1",

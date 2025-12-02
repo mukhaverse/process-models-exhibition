@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load data from JSON file
+// Load data from JSON file
 async function loadData() {
     try {
         const response = await fetch('data.json');
@@ -22,10 +23,16 @@ async function loadData() {
         // Initialize everything in correct order
         initParticles();
         initHeroAnimations();
+        
+        // ----------------------------------------------------
+        // FIX: RENDER STATS AND THEN INITIATE THE ANIMATION IMMEDIATELY
         renderStats();
+        animateStats(); // <-- MOVED HERE TO RUN RIGHT AFTER ELEMENTS ARE CREATED
+        // ----------------------------------------------------
+        
         renderProjects();
         renderInsights();
-        // renderTestimonials(); // Comment this out if function doesn't exist
+        // renderTestimonials(); 
         
         // Update counts in hero section
         document.getElementById('teamsCount').textContent = `${new Set(appData.projects.map(p => p.team)).size} TEAMS`;
@@ -36,6 +43,7 @@ async function loadData() {
             initCarousel();
             initFlipCards();
             initProjectExpansion();
+            // initScrollAnimations will run all other section animations
             initScrollAnimations();
             
             // Render and initialize gallery

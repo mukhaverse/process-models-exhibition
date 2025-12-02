@@ -33,7 +33,7 @@ function initScrollAnimations() {
     });
 
     // Stats animation 
-    animateStats();
+    // animateStats();
 
     // Projects animation
     gsap.fromTo('.project-card', 
@@ -89,27 +89,27 @@ function initScrollAnimations() {
 }
 
 
-function animateStats() {
-    const statCards = document.querySelectorAll('.stat-card');
+// function animateStats() {
+//     const statCards = document.querySelectorAll('.stat-card');
     
-    if (statCards.length === 0) return;
+//     if (statCards.length === 0) return;
     
 
-    gsap.set(statCards, {
-        scaleX: 0,
-        transformOrigin: "left center"
-    });
+//     gsap.set(statCards, {
+//         scaleX: 0,
+//         transformOrigin: "left center"
+//     });
 
-    gsap.to(statCards, {
-        scaleX: 1,
-        duration: 1,
-        stagger: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: ".stats-section",
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none none"
-        }
-    });
-}
+//     gsap.to(statCards, {
+//         scaleX: 1,
+//         duration: 1,
+//         stagger: 0.5,
+//         ease: "power2.out",
+//         scrollTrigger: {
+//             trigger: ".stats-section",
+//             start: "top 80%",
+//             end: "bottom 20%",
+//             toggleActions: "play none none none"
+//         }
+//     });
+// }
