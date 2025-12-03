@@ -5,12 +5,12 @@
     {
       "src": "placeholder.png",
       "caption": "Opening Day",
-      "offset": -60
+      "offset": 70
     },
     {
       "src": "placeholder.png",
       "caption": "Team Presentations",
-      "offset": 40
+      "offset": 20
     },
     {
       "src": "placeholder.png",
@@ -20,27 +20,27 @@
     {
       "src": "placeholder.png",
       "caption": "Networking",
-      "offset": 60
+      "offset": 30
     },
     {
       "src": "placeholder.png",
       "caption": "Award Ceremony",
-      "offset": -40
+      "offset": -10
     },
     {
       "src": "placeholder.png",
       "caption": "Final Sprint",
-      "offset": 80
+      "offset": 50
     },
      {
       "src": "placeholder.png",
       "caption": "Opening Day",
-      "offset": -60
+      "offset": -99
     },
     {
       "src": "placeholder.png",
       "caption": "Team Presentations",
-      "offset": 40
+      "offset": 45
     },
     {
       "src": "placeholder.png",
@@ -55,12 +55,12 @@
     {
       "src": "placeholder.png",
       "caption": "Award Ceremony",
-      "offset": -40
+      "offset": -64
     },
     {
       "src": "placeholder.png",
       "caption": "Final Sprint",
-      "offset": 80
+      "offset": 20
     }
   ]
 }

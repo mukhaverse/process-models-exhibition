@@ -57,7 +57,7 @@ function initScrollAnimations() {
             }
         );
 
-    // Insights animation
+    // Insights animation (MODIFIED for Accordion Stack)
     gsap.from('.insight-card', {
         scrollTrigger: {
             trigger: '.questionnaire-section',
@@ -65,11 +65,11 @@ function initScrollAnimations() {
             end: 'bottom 20%',
             toggleActions: 'play none none none'
         },
-        scale: 0.9,
+        y: 50,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'back.out(1.4)'
+        duration: 0.8,
+        stagger: 0.2, // Staggered entry for the "stack" effect
+        ease: 'power3.out'
     });
 
     // Feedback cards animation
