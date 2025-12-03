@@ -25,6 +25,8 @@ body {
     color: var(--cream);
     line-height: 1.5;
     overflow-x: hidden;
+    z-index: 10;
+    position: relative;
 }
 
 /* Navigation Corner UI */
@@ -196,4 +198,8 @@ body {
 /* Remove old expanded styles */
 .project-card.expanded {
     display: none;
+}
+section{
+    position: relative;
+    z-index: 10;
 }

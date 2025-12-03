@@ -1,7 +1,13 @@
-/* Gallery Section */
+
+/* Gallery Section - Updated to work with footer */
 .gallery-section {
     padding: var(--spacing-xl) 0;
     overflow: hidden;
+    position: relative;
+    z-index: 2; /* Changed from 10 to 2 */
+    background: var(--dark);
+    /* Add padding bottom to give space before footer */
+    padding-bottom: calc(var(--spacing-xl) + 100px);
 }
 
 .gallery-scroll-container {
@@ -39,21 +45,3 @@
     box-shadow: 0 10px 40px var(--mint-glow);
     transform: scale(1.02);
 }
-
-/* .gallery-caption {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    right: 1.5rem;
-    background: rgba(10, 14, 18, 0.9);
-    border: 1px solid var(--mint);
-    padding: 0.75rem 1rem;
-    font-weight: 600;
-    color: var(--mint);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.875rem;
-    backdrop-filter: blur(10px);
-} */
-
-

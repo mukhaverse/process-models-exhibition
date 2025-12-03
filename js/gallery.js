@@ -18,6 +18,7 @@ function renderGallery() {
 }
 
 
+// Update your initGalleryScroll function
 function initGalleryScroll() {
     const container = document.querySelector('.gallery-photos');
     if (!container) return;
@@ -32,10 +33,10 @@ function initGalleryScroll() {
             start: 'top 20%',
             end: () => `+=${totalWidth}`,
             scrub: 1,
-            pin: true
+            pin: true,
+            pinSpacing: true // Make sure this is true
         }
     });
-    
     
     gsap.to('.gallery-photo', {
         opacity: 1,
