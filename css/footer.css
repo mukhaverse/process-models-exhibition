@@ -249,9 +249,9 @@
         /* gap: ; */
     }
     
-    .footer-brand {
-        /* grid-column: 1 / -1; */
-    }
+    /* .footer-brand {
+        grid-column: 1 / -1;
+    } */
 
     .footer-bottom {
         flex-wrap: wrap;
